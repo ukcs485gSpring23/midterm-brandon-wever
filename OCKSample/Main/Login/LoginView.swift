@@ -26,6 +26,7 @@ struct LoginView: View {
     @ObservedObject var viewModel: LoginViewModel
     @State var usersname = ""
     @State var password = ""
+    @State var email = ""
     @State var firstName: String = ""
     @State var lastName: String = ""
     @State var signupLoginSegmentValue = 0
@@ -33,9 +34,9 @@ struct LoginView: View {
     var body: some View {
         VStack {
             // Change the title to the name of your application
-            Text("CareKit Sample App")
+            Text("Alpine Fitness")
                 .font(.largeTitle)
-                .foregroundColor(.white)
+                .foregroundColor(.green)
                 .padding()
             // Change this image to something that represents your application
             Image("exercise.jpg")
@@ -85,6 +86,13 @@ struct LoginView: View {
                         .background(.white)
                         .cornerRadius(20.0)
                         .shadow(radius: 10.0, x: 20, y: 10)
+
+                    TextField("Email", text: $email)
+                        .padding()
+                        .background(.white)
+                        .cornerRadius(20.0)
+                        .shadow(radius: 10.0, x: 20, y: 10)
+
                 default:
                     EmptyView()
                 }
@@ -102,6 +110,7 @@ struct LoginView: View {
                         await viewModel.signup(.patient,
                                                username: usersname,
                                                password: password,
+                                               email: email,
                                                firstName: firstName,
                                                lastName: lastName)
                     }
