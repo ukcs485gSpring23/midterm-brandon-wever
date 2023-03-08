@@ -36,14 +36,17 @@ struct LoginView: View {
             // Change the title to the name of your application
             Text("Alpine Fitness")
                 .font(.largeTitle)
-                .foregroundColor(.green)
+                .foregroundColor(Color(#colorLiteral(red: 0.1960784346, green: 0.3411764801, blue: 0.1019607857, alpha: 1)))
                 .padding()
+            Text("Climb your mountain.")
+                .font(.caption)
+                .foregroundColor(Color(#colorLiteral(red: 0.1960784346, green: 0.3411764801, blue: 0.1019607857, alpha: 1)))
             // Change this image to something that represents your application
-            Image("exercise.jpg")
+            Image("mountain.png")
                 .resizable()
-                .frame(width: 150, height: 150, alignment: .center)
-                .clipShape(Circle())
-                .overlay(Circle().stroke(Color(.white), lineWidth: 4))
+                .frame(width: 150, height: 150, alignment: .center).cornerRadius(25)
+                .clipShape(Rectangle())
+                // .overlay(Rectangle().stroke(Color(.white), lineWidth: 4))
                 .shadow(radius: 10)
                 .padding()
 
@@ -165,7 +168,7 @@ struct LoginView: View {
             }
             Spacer()
         }
-        .background(LinearGradient(gradient: Gradient(colors: [Color(tintColorFlip),
+        .background(LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.9998105168, green: 0.9952459931, blue: 0.8368335366, alpha: 1)),
                                                                Color(tintColor)]),
                                    startPoint: .top,
                                    endPoint: .bottom))
