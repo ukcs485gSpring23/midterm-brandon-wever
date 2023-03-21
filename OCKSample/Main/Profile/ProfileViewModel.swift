@@ -9,6 +9,7 @@
 import Foundation
 import CareKit
 import CareKitStore
+import CareKitUtilities
 import SwiftUI
 import ParseCareKit
 import os.log
@@ -28,7 +29,7 @@ class ProfileViewModel: ObservableObject {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(reloadViewModel(_:)),
                                                // swiftlint:disable:next line_length
-                                               name: Notification.Name(rawValue: Constants.completedFirstSyncAfterLogin),
+                                               name: Notification.Name(rawValue: Constants.shouldRefreshView),
                                                object: nil)
     }
 

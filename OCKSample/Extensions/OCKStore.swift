@@ -89,8 +89,9 @@ extension OCKStore {
 
         var doxylamine = OCKTask(id: TaskID.doxylamine, title: "Take Doxylamine",
                                  carePlanUUID: nil, schedule: schedule)
-        doxylamine.instructions = "Take 25mg of doxylamine when you experience nausea."
+        doxylamine.instructions = "Whatup brotha"
         doxylamine.asset = "pills.fill"
+        doxylamine.card = .button
 
         let nauseaSchedule = OCKSchedule(composing: [
             OCKScheduleElement(start: beforeBreakfast, end: nil, interval: DateComponents(day: 1),

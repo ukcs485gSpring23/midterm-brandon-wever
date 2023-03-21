@@ -61,7 +61,7 @@ class CareViewController: OCKDailyPageViewController {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(reloadView(_:)),
                                                // swiftlint:disable:next line_length
-                                               name: Notification.Name(rawValue: Constants.completedFirstSyncAfterLogin),
+                                               name: Notification.Name(rawValue: Constants.shouldRefreshView),
                                                object: nil)
     }
 
