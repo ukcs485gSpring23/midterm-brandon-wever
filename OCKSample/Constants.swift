@@ -98,7 +98,6 @@ enum CareKitCard: String, CaseIterable, Identifiable {
     case simple = "Simple"
 }
 
-
 enum TaskID {
     static let doxylamine = "doxylamine"
     static let nausea = "nausea"

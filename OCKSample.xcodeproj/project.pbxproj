@@ -93,6 +93,8 @@
 		A005EFDE29B914DB00B6EDBF /* AnimationStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A005EFDC29B914DB00B6EDBF /* AnimationStyle.swift */; };
 		A005EFE029B9170000B6EDBF /* DimensionStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A005EFDF29B9170000B6EDBF /* DimensionStyle.swift */; };
 		A005EFE129B9170000B6EDBF /* DimensionStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A005EFDF29B9170000B6EDBF /* DimensionStyle.swift */; };
+		A086119329CBAD5F007726D4 /* OCKHealthKitTask+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = A086119229CBAD5F007726D4 /* OCKHealthKitTask+Custom.swift */; };
+		A086119429CBAD5F007726D4 /* OCKHealthKitTask+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = A086119229CBAD5F007726D4 /* OCKHealthKitTask+Custom.swift */; };
 		A0BC000629CA3FAA004C8D0D /* CareKitUtilities in Frameworks */ = {isa = PBXBuildFile; productRef = A0BC000529CA3FAA004C8D0D /* CareKitUtilities */; };
 		A0BC000829CA489B004C8D0D /* OCKTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BC000729CA489B004C8D0D /* OCKTask.swift */; };
 		A0BC000929CA489B004C8D0D /* OCKTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BC000729CA489B004C8D0D /* OCKTask.swift */; };
@@ -214,6 +216,7 @@
 		91AD924824A4C42E00925D4D /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		A005EFDC29B914DB00B6EDBF /* AnimationStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationStyle.swift; sourceTree = "<group>"; };
 		A005EFDF29B9170000B6EDBF /* DimensionStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimensionStyle.swift; sourceTree = "<group>"; };
+		A086119229CBAD5F007726D4 /* OCKHealthKitTask+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OCKHealthKitTask+Custom.swift"; sourceTree = "<group>"; };
 		A0BC000729CA489B004C8D0D /* OCKTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OCKTask.swift; sourceTree = "<group>"; };
 		A0BC000B29CA4D4C004C8D0D /* CareKitTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareKitTaskView.swift; sourceTree = "<group>"; };
 		A0BC000D29CA4D9C004C8D0D /* CareKitTaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareKitTaskViewModel.swift; sourceTree = "<group>"; };
@@ -448,6 +451,7 @@
 				7083A855279CA40A00B3832E /* PCKUtility.swift */,
 				A0BC000729CA489B004C8D0D /* OCKTask.swift */,
 				A0BC000F29CA4E19004C8D0D /* OCKSynchronizedStoreManager.swift */,
+				A086119229CBAD5F007726D4 /* OCKHealthKitTask+Custom.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -744,6 +748,7 @@
 				A005EFDE29B914DB00B6EDBF /* AnimationStyle.swift in Sources */,
 				918FDEB8271B49060045A0EF /* Logger.swift in Sources */,
 				91AD923B24A4C42D00925D4D /* CareView.swift in Sources */,
+				A086119429CBAD5F007726D4 /* OCKHealthKitTask+Custom.swift in Sources */,
 				70F921A927CA9A4000368CEC /* CustomStylerKey.swift in Sources */,
 				7075151E28DE1A8300A57A0C /* MainView.swift in Sources */,
 				70A98D62278A2683009B58F2 /* Styler.swift in Sources */,
@@ -785,6 +790,7 @@
 				70F921AC27CABE3000368CEC /* SessionDelegate.swift in Sources */,
 				70F0EFEA28C2EE6C0005B5A2 /* AppDelegateKey.swift in Sources */,
 				7036E64025717F85006E9A3C /* Constants.swift in Sources */,
+				A086119329CBAD5F007726D4 /* OCKHealthKitTask+Custom.swift in Sources */,
 				7036E4CE256E9A0C006E9A3C /* ContactView.swift in Sources */,
 				70F03A972786098F00E5AFB4 /* OCKStore.swift in Sources */,
 				70DFD80B2567074500B9DB12 /* LoginView.swift in Sources */,
@@ -1242,8 +1248,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/netreconlab/ParseCareKit.git";
 			requirement = {
-				kind = exactVersion;
-				version = 0.13.1;
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.12.0;
 			};
 		};
 		A0BC000429CA3FAA004C8D0D /* XCRemoteSwiftPackageReference "CareKitUtilities" */ = {
