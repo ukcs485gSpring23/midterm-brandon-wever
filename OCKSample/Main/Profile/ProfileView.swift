@@ -42,6 +42,24 @@ struct ProfileView: View {
             Button(action: {
                 Task {
                     do {
+                        Logger.profile.debug("Yo")
+                    } catch {
+                        Logger.profile.error("Error adding task: \(error)")
+                    }
+                }
+            }, label: {
+                Text("Add task")
+                    .font(.headline)
+                    .foregroundColor(.white)
+                    .padding()
+                    .frame(width: 300, height: 50)
+            })
+            .background(Color(.lightGray))
+            .cornerRadius(15)
+
+            Button(action: {
+                Task {
+                    do {
                         try await viewModel.saveProfile(firstName,
                                                         last: lastName,
                                                         birth: birthday)
@@ -74,7 +92,8 @@ struct ProfileView: View {
             })
             .background(Color(.red))
             .cornerRadius(15)
-        }.onReceive(viewModel.$patient) { patient in
+        }
+        .onReceive(viewModel.$patient) { patient in
             if let currentFirstName = patient?.name.givenName {
                 firstName = currentFirstName
             }
