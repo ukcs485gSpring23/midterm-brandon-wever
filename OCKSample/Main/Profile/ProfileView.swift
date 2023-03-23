@@ -39,22 +39,14 @@ struct ProfileView: View {
                     .shadow(radius: 10.0, x: 20, y: 10)
             }
 
-            Button(action: {
-                Task {
-                    do {
-                        Logger.profile.debug("Yo")
-                    } catch {
-                        Logger.profile.error("Error adding task: \(error)")
-                    }
-                }
-            }, label: {
-                Text("Add task")
-                    .font(.headline)
-                    .foregroundColor(.white)
-                    .padding()
-                    .frame(width: 300, height: 50)
+            NavigationLink(destination: CareKitTaskView(), label: {
+                Text("Add Task")
             })
-            .background(Color(.lightGray))
+            .font(.headline)
+            .foregroundColor(.white)
+            .padding()
+            .frame(width: 300, height: 50)
+            .background(Color(.darkGray))
             .cornerRadius(15)
 
             Button(action: {
