@@ -185,7 +185,7 @@ class CareViewController: OCKDailyPageViewController {
         case TaskID.stretch:
             return [OCKInstructionsTaskViewController(task: task,
                                                      eventQuery: .init(for: date),
-                                                     storeManager: self.storeManager)]
+                                                      storeManager: self.storeManager)]
 
         case TaskID.kegels:
             /*
