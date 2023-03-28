@@ -14,7 +14,7 @@ class CareKitTaskViewModel: ObservableObject {
     @Published var title = ""
     @Published var instructions = ""
     @Published var selectedCard: CareKitCard = .button
-    @Published var selectedSchedule = ""
+    @Published var selectedSchedule = "Every Day"
 
     @Published var error: AppError? {
         willSet {
@@ -119,6 +119,7 @@ class CareKitTaskViewModel: ObservableObject {
                                                   end: nil,
                                                   text: nil))
         task.instructions = instructions
+        task.card = selectedCard
         task.schedule = setSchedule(userSchedule: selectedSchedule)
 
         do {
@@ -150,6 +151,7 @@ class CareKitTaskViewModel: ObservableObject {
                                                                      unit: .count()))
         healthKitTask.instructions = instructions
         healthKitTask.card = selectedCard
+        healthKitTask.schedule = setSchedule(userSchedule: selectedSchedule)
         do {
             try await appDelegate.storeManager.addTasksIfNotPresent([healthKitTask])
             Logger.careKitTask.info("Saved HealthKitTask: \(healthKitTask.id, privacy: .private)")

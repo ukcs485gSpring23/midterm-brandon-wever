@@ -97,6 +97,8 @@ struct ProfileView: View {
             }
         }.onReceive(appDelegate.$storeManager) { newStoreManager in
             viewModel.updateStoreManager(newStoreManager)
+        }.onReceive(appDelegate.$isFirstTimeLogin) { _ in
+            viewModel.updateStoreManager()
         }
     }
 }
