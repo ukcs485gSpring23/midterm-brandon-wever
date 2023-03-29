@@ -170,10 +170,19 @@ class CareViewController: OCKDailyPageViewController {
         }
     }
 
+    // swiftlint:disable:next cyclomatic_complexity
     private func taskViewController(for task: OCKAnyTask,
                                     on date: Date) -> [UIViewController]? {
-        switch task.id {
-        case TaskID.steps:
+        let cardView: CareKitCard!
+                if let task = task as? OCKTask {
+                    cardView = task.card
+                } else if let task = task as? OCKHealthKitTask {
+                    cardView = task.card
+                } else {
+                    return nil
+                }
+        switch cardView {
+        case .numericProgress:
             let view = NumericProgressTaskView(
                 task: task,
                 eventQuery: OCKEventQuery(for: date),
@@ -182,12 +191,12 @@ class CareViewController: OCKDailyPageViewController {
                 .careKitStyle(CustomStylerKey.defaultValue)
 
             return [view.formattedHostingController()]
-        case TaskID.stretch:
+        case .instruction:
             return [OCKInstructionsTaskViewController(task: task,
                                                      eventQuery: .init(for: date),
                                                       storeManager: self.storeManager)]
 
-        case TaskID.kegels:
+        case .simple:
             /*
              Since the kegel task is only scheduled every other day, there will be cases
              where it is not contained in the tasks array returned from the query.
@@ -197,14 +206,14 @@ class CareViewController: OCKDailyPageViewController {
                                                storeManager: self.storeManager)]
 
         // Create a card for the doxylamine task if there are events for it on this day.
-        case TaskID.doxylamine:
+        case .checklist:
 
             return [OCKChecklistTaskViewController(
                 task: task,
                 eventQuery: .init(for: date),
                 storeManager: self.storeManager)]
 
-        case TaskID.nausea:
+        case .button:
             var cards = [UIViewController]()
             // dynamic gradient colors
             let nauseaGradientStart = UIColor { traitCollection -> UIColor in
@@ -216,7 +225,7 @@ class CareViewController: OCKDailyPageViewController {
 
             // Create a plot comparing nausea to medication adherence.
             let nauseaDataSeries = OCKDataSeriesConfiguration(
-                taskID: "nausea",
+                taskID: TaskID.nausea,
                 legendTitle: "Nausea",
                 gradientStartColor: nauseaGradientStart,
                 gradientEndColor: nauseaGradientEnd,
@@ -224,7 +233,7 @@ class CareViewController: OCKDailyPageViewController {
                 eventAggregator: OCKEventAggregator.countOutcomeValues)
 
             let doxylamineDataSeries = OCKDataSeriesConfiguration(
-                taskID: "doxylamine",
+                taskID: TaskID.doxylamine,
                 legendTitle: "Doxylamine",
                 gradientStartColor: .systemGray2,
                 gradientEndColor: .systemGray,
@@ -240,7 +249,9 @@ class CareViewController: OCKDailyPageViewController {
             insightsCard.chartView.headerView.titleLabel.text = "Nausea & Doxylamine Intake"
             insightsCard.chartView.headerView.detailLabel.text = "This Week"
             insightsCard.chartView.headerView.accessibilityLabel = "Nausea & Doxylamine Intake, This Week"
-            cards.append(insightsCard)
+
+            // uncomment to get associated button graph
+            // cards.append(insightsCard)
 
             /*
              Also create a card that displays a single event.
@@ -251,10 +262,40 @@ class CareViewController: OCKDailyPageViewController {
                                                             eventQuery: .init(for: date),
                                                             storeManager: self.storeManager)
             cards.append(nauseaCard)
+
             return cards
 
+        case .labeledValue:
+            let view = LabeledValueTaskView(
+                task: task,
+                eventQuery: OCKEventQuery(for: date),
+                storeManager: self.storeManager)
+                .padding([.vertical], 20)
+                .careKitStyle(CustomStylerKey.defaultValue)
+
+            return [view.formattedHostingController()]
+
+        case .link:
+            let linkView = LinkView(title: .init("ChatGTP"),
+                                    links: [.website("https://openai.com/blog/chatgpt",
+                                    title: "Ask chatGTP about your workout questions!")])
+            return [linkView.formattedHostingController()]
+
         default:
-            return nil
+            // Check if a healthKit task
+            guard task is OCKHealthKitTask else {
+                return [OCKSimpleTaskViewController(task: task,
+                                                    eventQuery: .init(for: date),
+                                                    storeManager: self.storeManager)]
+            }
+            let view = LabeledValueTaskView(
+                task: task,
+                eventQuery: OCKEventQuery(for: date),
+                storeManager: self.storeManager)
+                .padding([.vertical], 20)
+                .careKitStyle(CustomStylerKey.defaultValue)
+
+            return [view.formattedHostingController()]
         }
     }
 
@@ -262,10 +303,7 @@ class CareViewController: OCKDailyPageViewController {
         var query = OCKTaskQuery(for: date)
         query.excludesTasksWithNoEvents = true
         do {
-            let tasks = try await storeManager.store.fetchAnyTasks(query: query)
-            let orderedTasks = TaskID.ordered.compactMap { orderedTaskID in
-                tasks.first(where: { $0.id == orderedTaskID }) }
-            return orderedTasks
+            return try await storeManager.store.fetchAnyTasks(query: query)
         } catch {
             Logger.feed.error("\(error.localizedDescription, privacy: .public)")
             return []

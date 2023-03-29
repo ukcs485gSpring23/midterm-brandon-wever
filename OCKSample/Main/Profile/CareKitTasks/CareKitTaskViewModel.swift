@@ -14,7 +14,7 @@ class CareKitTaskViewModel: ObservableObject {
     @Published var title = ""
     @Published var instructions = ""
     @Published var selectedCard: CareKitCard = .button
-    @Published var selectedSchedule = "Every Day"
+    @Published var selectedSchedule: SchedulePossibilities = .everyDay
 
     @Published var error: AppError? {
         willSet {
@@ -24,21 +24,21 @@ class CareKitTaskViewModel: ObservableObject {
         }
     }
 
-    private func setSchedule(userSchedule: String) -> OCKSchedule {
+    private func setSchedule(userSchedule: SchedulePossibilities) async -> OCKSchedule {
         switch userSchedule {
-        case "Every Day":
+        case .everyDay:
             return OCKSchedule.dailyAtTime(hour: 0,
                                             minutes: 0,
                                             start: Date(),
                                             end: nil,
                                             text: nil)
-        case "Every Other Day":
-            return OCKSchedule.dailyAtTime(hour: 0,
-                                           minutes: 0,
-                                           start: Date() + 1,
-                                           end: nil,
-                                           text: nil)
-        case "Once a Week on Sunday":
+        case .everyOtherDay:
+            let element = OCKScheduleElement(start: Date(),
+                                             end: nil,
+                                             interval: DateComponents(day: 2))
+            let composedSchedule = OCKSchedule(composing: [element])
+            return composedSchedule
+        case .onceAWeekSunday:
             return OCKSchedule.weeklyAtTime(weekday: 1,
                                             hours: 0,
                                             minutes: 0,
@@ -46,7 +46,7 @@ class CareKitTaskViewModel: ObservableObject {
                                             end: nil,
                                             targetValues: [],
                                             text: nil)
-        case "Once a Week on Monday":
+        case .onceAWeekMonday:
             return OCKSchedule.weeklyAtTime(weekday: 2,
                                             hours: 0,
                                             minutes: 0,
@@ -54,7 +54,7 @@ class CareKitTaskViewModel: ObservableObject {
                                             end: nil,
                                             targetValues: [],
                                             text: nil)
-        case "Once a Week on Tuesday":
+        case .onceAWeekTuesday:
             return OCKSchedule.weeklyAtTime(weekday: 3,
                                             hours: 0,
                                             minutes: 0,
@@ -62,7 +62,7 @@ class CareKitTaskViewModel: ObservableObject {
                                             end: nil,
                                             targetValues: [],
                                             text: nil)
-        case "Once a Week on Wednesday":
+        case .onceAWeekWednesday:
             return OCKSchedule.weeklyAtTime(weekday: 4,
                                             hours: 0,
                                             minutes: 0,
@@ -70,7 +70,7 @@ class CareKitTaskViewModel: ObservableObject {
                                             end: nil,
                                             targetValues: [],
                                             text: nil)
-        case "Once a Week on Thursday":
+        case .onceAWeekThursday:
             return OCKSchedule.weeklyAtTime(weekday: 5,
                                             hours: 0,
                                             minutes: 0,
@@ -78,7 +78,7 @@ class CareKitTaskViewModel: ObservableObject {
                                             end: nil,
                                             targetValues: [],
                                             text: nil)
-        case "Once a Week on Friday":
+        case .onceAWeekFriday:
             return OCKSchedule.weeklyAtTime(weekday: 6,
                                             hours: 0,
                                             minutes: 0,
@@ -86,7 +86,7 @@ class CareKitTaskViewModel: ObservableObject {
                                             end: nil,
                                             targetValues: [],
                                             text: nil)
-        case "Once a Week on Saturday":
+        case .onceAWeekSaturday:
             return OCKSchedule.weeklyAtTime(weekday: 7,
                                             hours: 0,
                                             minutes: 0,
@@ -120,7 +120,7 @@ class CareKitTaskViewModel: ObservableObject {
                                                   text: nil))
         task.instructions = instructions
         task.card = selectedCard
-        task.schedule = setSchedule(userSchedule: selectedSchedule)
+        await task.schedule = setSchedule(userSchedule: selectedSchedule)
 
         do {
             try await appDelegate.storeManager.addTasksIfNotPresent([task])
@@ -151,7 +151,7 @@ class CareKitTaskViewModel: ObservableObject {
                                                                      unit: .count()))
         healthKitTask.instructions = instructions
         healthKitTask.card = selectedCard
-        healthKitTask.schedule = setSchedule(userSchedule: selectedSchedule)
+        await healthKitTask.schedule = setSchedule(userSchedule: selectedSchedule)
         do {
             try await appDelegate.storeManager.addTasksIfNotPresent([healthKitTask])
             Logger.careKitTask.info("Saved HealthKitTask: \(healthKitTask.id, privacy: .private)")
