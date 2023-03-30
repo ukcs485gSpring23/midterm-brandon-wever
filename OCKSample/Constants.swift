@@ -111,6 +111,13 @@ enum SchedulePossibilities: String, CaseIterable, Identifiable {
     case onceAWeekSunday = "Once a Week on Sunday"
 }
 
+enum HealthKitPossibilities: String, CaseIterable, Identifiable {
+    var id: Self { self }
+    case heartRateTracker = "Heart Rate Tracker"
+    case stepTracker = "Step Tracker"
+    case weightTracker = "Weight Tracker"
+}
+
 enum TaskID {
     static let doxylamine = "doxylamine"
     static let nausea = "nausea"

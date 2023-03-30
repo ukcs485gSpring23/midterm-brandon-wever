@@ -15,6 +15,7 @@ class CareKitTaskViewModel: ObservableObject {
     @Published var instructions = ""
     @Published var selectedCard: CareKitCard = .button
     @Published var selectedSchedule: SchedulePossibilities = .everyDay
+    @Published var selectedHealthKitTask: HealthKitPossibilities = .heartRateTracker
 
     @Published var error: AppError? {
         willSet {
@@ -24,7 +25,7 @@ class CareKitTaskViewModel: ObservableObject {
         }
     }
 
-    private func setSchedule(userSchedule: SchedulePossibilities) async -> OCKSchedule {
+    private func setSchedule(userSchedule: SchedulePossibilities) -> OCKSchedule {
         switch userSchedule {
         case .everyDay:
             return OCKSchedule.dailyAtTime(hour: 0,
@@ -103,6 +104,17 @@ class CareKitTaskViewModel: ObservableObject {
         }
     }
 
+    private func setHealthKitLinkage(userHealthKitTask: HealthKitPossibilities) -> OCKHealthKitLinkage {
+        switch userHealthKitTask {
+        case .heartRateTracker:
+            return OCKHealthKitLinkage.init(quantityIdentifier: .heartRate, quantityType: .discrete, unit: .count())
+        case .stepTracker:
+            return OCKHealthKitLinkage.init(quantityIdentifier: .stepCount, quantityType: .cumulative, unit: .count())
+        case .weightTracker:
+            return OCKHealthKitLinkage.init(quantityIdentifier: .bodyMass, quantityType: .discrete, unit: .pound())
+        }
+    }
+
     // MARK: Intents
     func addTask() async {
         guard let appDelegate = AppDelegateKey.defaultValue else {
@@ -120,7 +132,7 @@ class CareKitTaskViewModel: ObservableObject {
                                                   text: nil))
         task.instructions = instructions
         task.card = selectedCard
-        await task.schedule = setSchedule(userSchedule: selectedSchedule)
+        task.schedule = setSchedule(userSchedule: selectedSchedule)
 
         do {
             try await appDelegate.storeManager.addTasksIfNotPresent([task])
@@ -146,12 +158,13 @@ class CareKitTaskViewModel: ObservableObject {
                                                                     start: Date(),
                                                                     end: nil,
                                                                     text: nil),
-                                             healthKitLinkage: .init(quantityIdentifier: .electrodermalActivity,
-                                                                     quantityType: .discrete,
+                                             healthKitLinkage: .init(quantityIdentifier: .stepCount,
+                                                                     quantityType: .cumulative,
                                                                      unit: .count()))
         healthKitTask.instructions = instructions
         healthKitTask.card = selectedCard
-        await healthKitTask.schedule = setSchedule(userSchedule: selectedSchedule)
+        healthKitTask.schedule = setSchedule(userSchedule: selectedSchedule)
+        healthKitTask.healthKitLinkage = setHealthKitLinkage(userHealthKitTask: selectedHealthKitTask)
         do {
             try await appDelegate.storeManager.addTasksIfNotPresent([healthKitTask])
             Logger.careKitTask.info("Saved HealthKitTask: \(healthKitTask.id, privacy: .private)")
