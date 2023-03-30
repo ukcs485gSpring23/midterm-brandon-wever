@@ -95,7 +95,10 @@ extension OCKStore {
                                  schedule: schedule)
         doxylamine.instructions = "Take 25mg of doxylamine when you experience nausea."
         doxylamine.asset = "pills.fill"
+        doxylamine.card = .checklist
 
+        // uncomment to get back sample data
+        /*
         let nauseaSchedule = OCKSchedule(composing: [
             OCKScheduleElement(start: beforeBreakfast,
                                end: nil,
@@ -111,6 +114,7 @@ extension OCKStore {
         nausea.impactsAdherence = false
         nausea.instructions = "Tap the button below anytime you experience nausea."
         nausea.asset = "bed.double"
+        nausea.card = .button
 
         let kegelElement = OCKScheduleElement(start: beforeBreakfast,
                                               end: nil,
@@ -122,6 +126,7 @@ extension OCKStore {
                              schedule: kegelSchedule)
         kegels.impactsAdherence = true
         kegels.instructions = "Perform kegel exercies"
+        kegels.card = .simple
 
         let stretchElement = OCKScheduleElement(start: beforeBreakfast,
                                                 end: nil,
@@ -133,8 +138,10 @@ extension OCKStore {
                               schedule: stretchSchedule)
         stretch.impactsAdherence = true
         stretch.asset = "figure.walk"
+        stretch.card = .instruction
 
         try await addTasksIfNotPresent([nausea, doxylamine, kegels, stretch])
+         */
 
         var contact1 = OCKContact(id: "jane",
                                   givenName: "Jane",

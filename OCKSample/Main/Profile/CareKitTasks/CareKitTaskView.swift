@@ -23,6 +23,16 @@ struct CareKitTaskView: View {
                         Text(item.rawValue)
                     }
                 }
+                Picker("Task Occurance", selection: $viewModel.selectedSchedule) {
+                    ForEach(SchedulePossibilities.allCases) { item in
+                        Text(item.rawValue)
+                    }
+                }
+                Picker("HealthKit Task Type", selection: $viewModel.selectedHealthKitTask) {
+                    ForEach(HealthKitPossibilities.allCases) { item in
+                        Text(item.rawValue)
+                    }
+                }
                 Section("Task") {
                     Button("Add") {
                         Task {

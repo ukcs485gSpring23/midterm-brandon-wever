@@ -39,6 +39,16 @@ struct ProfileView: View {
                     .shadow(radius: 10.0, x: 20, y: 10)
             }
 
+            NavigationLink(destination: CareKitTaskView(), label: {
+                Text("Add Task")
+            })
+            .font(.headline)
+            .foregroundColor(.white)
+            .padding()
+            .frame(width: 300, height: 50)
+            .background(Color(.darkGray))
+            .cornerRadius(15)
+
             Button(action: {
                 Task {
                     do {
@@ -74,7 +84,8 @@ struct ProfileView: View {
             })
             .background(Color(.red))
             .cornerRadius(15)
-        }.onReceive(viewModel.$patient) { patient in
+        }
+        .onReceive(viewModel.$patient) { patient in
             if let currentFirstName = patient?.name.givenName {
                 firstName = currentFirstName
             }
@@ -86,6 +97,8 @@ struct ProfileView: View {
             }
         }.onReceive(appDelegate.$storeManager) { newStoreManager in
             viewModel.updateStoreManager(newStoreManager)
+        }.onReceive(appDelegate.$isFirstTimeLogin) { _ in
+            viewModel.updateStoreManager()
         }
     }
 }

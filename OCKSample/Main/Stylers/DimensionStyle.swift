@@ -11,6 +11,6 @@ import CareKitUI
 
 struct DimensionStyle: OCKDimensionStyler {
     var lineWidth1: CGFloat { 10 }
-    var stackSpacing1: CGFloat { 12 }
+    var stackSpacing1: CGFloat { 20 }
     var imageHeight2: CGFloat { 50 }
 }
