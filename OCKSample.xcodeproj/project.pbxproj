@@ -89,6 +89,7 @@
 		91AD924324A4C42E00925D4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91AD924224A4C42E00925D4D /* Assets.xcassets */; };
 		91AD924624A4C42E00925D4D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91AD924524A4C42E00925D4D /* Preview Assets.xcassets */; };
 		91AD924B24A4C42E00925D4D /* OCKWatchSample.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 91AD922724A4C42B00925D4D /* OCKWatchSample.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A0008A1729DCBAA9000969FD /* CustomContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0008A1629DCBAA9000969FD /* CustomContactViewController.swift */; };
 		A005EFDD29B914DB00B6EDBF /* AnimationStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A005EFDC29B914DB00B6EDBF /* AnimationStyle.swift */; };
 		A005EFDE29B914DB00B6EDBF /* AnimationStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A005EFDC29B914DB00B6EDBF /* AnimationStyle.swift */; };
 		A005EFE029B9170000B6EDBF /* DimensionStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A005EFDF29B9170000B6EDBF /* DimensionStyle.swift */; };
@@ -214,6 +215,7 @@
 		91AD924524A4C42E00925D4D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		91AD924724A4C42E00925D4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		91AD924824A4C42E00925D4D /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		A0008A1629DCBAA9000969FD /* CustomContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomContactViewController.swift; sourceTree = "<group>"; };
 		A005EFDC29B914DB00B6EDBF /* AnimationStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationStyle.swift; sourceTree = "<group>"; };
 		A005EFDF29B9170000B6EDBF /* DimensionStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimensionStyle.swift; sourceTree = "<group>"; };
 		A086119229CBAD5F007726D4 /* OCKHealthKitTask+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OCKHealthKitTask+Custom.swift"; sourceTree = "<group>"; };
@@ -345,6 +347,7 @@
 			isa = PBXGroup;
 			children = (
 				7036E4CD256E9A0C006E9A3C /* ContactView.swift */,
+				A0008A1629DCBAA9000969FD /* CustomContactViewController.swift */,
 			);
 			path = Contact;
 			sourceTree = "<group>";
@@ -817,6 +820,7 @@
 				A005EFE029B9170000B6EDBF /* DimensionStyle.swift in Sources */,
 				A0BC001029CA4E19004C8D0D /* OCKSynchronizedStoreManager.swift in Sources */,
 				91693822271B897200A634ED /* Utility.swift in Sources */,
+				A0008A1729DCBAA9000969FD /* CustomContactViewController.swift in Sources */,
 				707CC718254DA91900116728 /* OCKLocalization.swift in Sources */,
 				E7C37849228F887800E982D8 /* TipView.swift in Sources */,
 				70077597252228E900EC0EDA /* User.swift in Sources */,
