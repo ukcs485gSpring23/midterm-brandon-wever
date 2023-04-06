@@ -118,6 +118,11 @@ enum HealthKitPossibilities: String, CaseIterable, Identifiable {
     case weightTracker = "Weight Tracker"
 }
 
+enum CarePlanID: String {
+    case health // Add custom id's for your Care Plans, these are examples
+    case checkIn
+}
+
 enum TaskID {
     static let doxylamine = "doxylamine"
     static let nausea = "nausea"
