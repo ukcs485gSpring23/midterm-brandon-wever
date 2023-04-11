@@ -42,7 +42,26 @@ extension OCKHealthKitPassthroughStore {
         }
     }
 
-    func populateSampleData() async throws {
+    func populateCarePlans(patientUUID: UUID? = nil) async throws -> UUID {
+
+            let userCarePlan = OCKCarePlan(id: CarePlanID.user.rawValue,
+                                           title: "User Care Plan",
+                                           patientUUID: patientUUID)
+
+            try await AppDelegateKey
+                .defaultValue?
+                .storeManager
+                .addCarePlansIfNotPresent([userCarePlan],
+                                          patientUUID: patientUUID)
+        return userCarePlan.uuid
+        }
+
+    /*
+     TODOx: You need to tie an OCPatient and CarePlan to these tasks,
+     Save a care plan, fetch care plan, tie in by passing the UUID (populateCarePlan())
+    */
+    func populateSampleData(_ patientUUID: UUID? = nil) async throws {
+        let carePlanUUID = try await populateCarePlans(patientUUID: patientUUID)
 
         let schedule = OCKSchedule.dailyAtTime(
             hour: 8, minutes: 0, start: Date(), end: nil, text: nil,
@@ -51,7 +70,7 @@ extension OCKHealthKitPassthroughStore {
         var steps = OCKHealthKitTask(
             id: TaskID.steps,
             title: "Steps",
-            carePlanUUID: nil,
+            carePlanUUID: carePlanUUID,
             schedule: schedule,
             healthKitLinkage: OCKHealthKitLinkage(
                 quantityIdentifier: .stepCount,
@@ -60,6 +79,6 @@ extension OCKHealthKitPassthroughStore {
         steps.asset = "figure.walk"
         steps.card = .numericProgress
         // uncomment to get sample steps card back
-        // try await addTasksIfNotPresent([steps])
+        try await addTasksIfNotPresent([steps])
     }
 }

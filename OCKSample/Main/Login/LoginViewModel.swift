@@ -135,8 +135,8 @@ class LoginViewModel: ObservableObject {
                throw AppError.couldntCast
            }
 
-           try await appDelegate.store?.populateSampleData()
-           try await appDelegate.healthKitStore.populateSampleData()
+        try await appDelegate.store?.populateSampleData(patient.uuid)
+        try await appDelegate.healthKitStore.populateSampleData(patient.uuid)
            appDelegate.parseRemote.automaticallySynchronizes = true
 
            // Post notification to sync

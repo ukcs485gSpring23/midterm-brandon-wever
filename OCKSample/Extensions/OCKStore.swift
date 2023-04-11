@@ -43,6 +43,20 @@ extension OCKStore {
         }
     }
 
+    func populateCarePlans(patientUUID: UUID? = nil) async throws -> UUID {
+
+            let userCarePlan = OCKCarePlan(id: CarePlanID.user.rawValue,
+                                           title: "User Care Plan",
+                                           patientUUID: patientUUID)
+
+            try await AppDelegateKey
+                .defaultValue?
+                .storeManager
+                .addCarePlansIfNotPresent([userCarePlan],
+                                          patientUUID: patientUUID)
+        return userCarePlan.uuid
+        }
+
     func addContactsIfNotPresent(_ contacts: [OCKContact]) async throws {
         let contactIdsToAdd = contacts.compactMap { $0.id }
 
@@ -72,12 +86,17 @@ extension OCKStore {
     }
 
     // Adds tasks and contacts into the store
-    func populateSampleData() async throws {
+    func populateSampleData(_ patientUUID: UUID? = nil) async throws {
 
+        let carePlanUUID = try await populateCarePlans(patientUUID: patientUUID)
         let thisMorning = Calendar.current.startOfDay(for: Date())
-        let aFewDaysAgo = Calendar.current.date(byAdding: .day, value: -4, to: thisMorning)!
-        let beforeBreakfast = Calendar.current.date(byAdding: .hour, value: 8, to: aFewDaysAgo)!
-        let afterLunch = Calendar.current.date(byAdding: .hour, value: 14, to: aFewDaysAgo)!
+
+        guard let aFewDaysAgo = Calendar.current.date(byAdding: .day, value: -4, to: thisMorning),
+                      let beforeBreakfast = Calendar.current.date(byAdding: .hour, value: 8, to: aFewDaysAgo),
+                      let afterLunch = Calendar.current.date(byAdding: .hour, value: 14, to: aFewDaysAgo) else {
+                    Logger.ockStore.error("Could not unwrap calendar. Should never hit")
+                    throw AppError.couldntBeUnwrapped
+                }
 
         let schedule = OCKSchedule(composing: [
             OCKScheduleElement(start: beforeBreakfast,
@@ -91,7 +110,7 @@ extension OCKStore {
 
         var doxylamine = OCKTask(id: TaskID.doxylamine,
                                  title: "Take Doxylamine",
-                                 carePlanUUID: nil,
+                                 carePlanUUID: carePlanUUID,
                                  schedule: schedule)
         doxylamine.instructions = "Take 25mg of doxylamine when you experience nausea."
         doxylamine.asset = "pills.fill"
@@ -122,7 +141,7 @@ extension OCKStore {
         let kegelSchedule = OCKSchedule(composing: [kegelElement])
         var kegels = OCKTask(id: TaskID.kegels,
                              title: "Kegel Exercises",
-                             carePlanUUID: nil,
+                             carePlanUUID: carePlanUUID,
                              schedule: kegelSchedule)
         kegels.impactsAdherence = true
         kegels.instructions = "Perform kegel exercies"
@@ -134,7 +153,7 @@ extension OCKStore {
         let stretchSchedule = OCKSchedule(composing: [stretchElement])
         var stretch = OCKTask(id: TaskID.stretch,
                               title: "Stretch",
-                              carePlanUUID: nil,
+                              carePlanUUID: carePlanUUID,
                               schedule: stretchSchedule)
         stretch.impactsAdherence = true
         stretch.asset = "figure.walk"
@@ -146,7 +165,7 @@ extension OCKStore {
         var contact1 = OCKContact(id: "jane",
                                   givenName: "Jane",
                                   familyName: "Daniels",
-                                  carePlanUUID: nil)
+                                  carePlanUUID: carePlanUUID)
         contact1.asset = "JaneDaniels"
         contact1.title = "Family Practice Doctor"
         contact1.role = "Dr. Daniels is a family practice doctor with 8 years of experience."
@@ -164,7 +183,7 @@ extension OCKStore {
         }()
 
         var contact2 = OCKContact(id: "matthew", givenName: "Matthew",
-                                  familyName: "Reiff", carePlanUUID: nil)
+                                  familyName: "Reiff", carePlanUUID: carePlanUUID)
         contact2.asset = "MatthewReiff"
         contact2.title = "OBGYN"
         contact2.role = "Dr. Reiff is an OBGYN with 13 years of experience."
