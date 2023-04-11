@@ -23,7 +23,12 @@ class ProfileViewModel: ObservableObject {
     @Published var birthday = Date()
     @Published var sex: OCKBiologicalSex = .other("other")
     @Published var sexOtherField = "other"
+    @Published var allergies = ""
     @Published var note = ""
+    @Published var emailAddress = ""
+    @Published var messagingNumbers = ""
+    @Published var phoneNumbers = ""
+    @Published var otherContactInfo = ""
     @Published var street = ""
     @Published var city = ""
     @Published var state = ""
@@ -259,6 +264,7 @@ class ProfileViewModel: ObservableObject {
         }
 
         @MainActor
+        // swiftlint:disable:next cyclomatic_complexity
         func savePatient() async throws {
         if var patientToUpdate = patient {
             // If there is a currentPatient that was fetched, check to see if any of the fields changed
@@ -292,6 +298,11 @@ class ProfileViewModel: ObservableObject {
                                 patientToUpdate.notes = notes
             }
 
+            if patient?.allergies != [allergies] {
+                patientHasBeenUpdated = true
+                patientToUpdate.allergies = [allergies]
+            }
+
             if patientHasBeenUpdated {
                 let updated = try await storeManager.store.updateAnyPatient(patientToUpdate)
                 Logger.profile.info("Successfully updated patient")
@@ -312,6 +323,7 @@ class ProfileViewModel: ObservableObject {
                                                     givenName: firstName,
                                                     familyName: lastName)
                         newPatient.birthday = birthday
+                        newPatient.allergies = [allergies]
 
             // This is new patient that has never been saved before
             let addedPatient = try await storeManager.store.addAnyPatient(newPatient)
@@ -326,6 +338,7 @@ class ProfileViewModel: ObservableObject {
                 }
 
                 @MainActor
+                // swiftlint:disable:next cyclomatic_complexity
                 func saveContact() async throws {
 
                     if var contactToUpdate = contact {
@@ -349,6 +362,36 @@ class ProfileViewModel: ObservableObject {
                         if contact?.address != potentialAddress {
                             contactHasBeenUpdated = true
                             contactToUpdate.address = potentialAddress
+                        }
+
+                        let potentialEmailAddresses = OCKLabeledValue(label: "Email Address", value: emailAddress)
+
+                        if contact?.emailAddresses != [potentialEmailAddresses] {
+                            contactHasBeenUpdated = true
+                            contactToUpdate.emailAddresses = [potentialEmailAddresses]
+                        }
+
+                        let potentialMessagingNumbers = OCKLabeledValue(label: "Messaging Numbers",
+                                                                        value: messagingNumbers)
+
+                        if contact?.messagingNumbers != [potentialMessagingNumbers] {
+                            contactHasBeenUpdated = true
+                            contactToUpdate.messagingNumbers = [potentialMessagingNumbers]
+                        }
+
+                        let potentialPhoneNumbers = OCKLabeledValue(label: "Phone Numbers", value: phoneNumbers)
+
+                        if contact?.phoneNumbers != [potentialPhoneNumbers] {
+                            contactHasBeenUpdated = true
+                            contactToUpdate.phoneNumbers = [potentialPhoneNumbers]
+                        }
+
+                        let potentialOtherContactInfo = OCKLabeledValue(label: "Other Contact Info",
+                                                                        value: "otherContactInfo")
+
+                        if contact?.otherContactInfo != [potentialOtherContactInfo] {
+                            contactHasBeenUpdated = true
+                            contactToUpdate.otherContactInfo = [potentialOtherContactInfo]
                         }
 
                         if contactHasBeenUpdated {

@@ -44,13 +44,15 @@ extension OCKStore {
     }
 
     func populateCarePlans(patientUUID: UUID? = nil) async throws {
-            let checkInCarePlan = OCKCarePlan(id: CarePlanID.checkIn.rawValue,
-                                              title: "Check in Care Plan",
-                                              patientUUID: patientUUID)
+
+            let userCarePlan = OCKCarePlan(id: CarePlanID.user.rawValue,
+                                           title: "User Care Plan",
+                                           patientUUID: patientUUID)
+
             try await AppDelegateKey
                 .defaultValue?
                 .storeManager
-                .addCarePlansIfNotPresent([checkInCarePlan],
+                .addCarePlansIfNotPresent([userCarePlan],
                                           patientUUID: patientUUID)
         }
 

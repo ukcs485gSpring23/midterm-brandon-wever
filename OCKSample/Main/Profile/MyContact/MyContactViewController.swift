@@ -82,6 +82,7 @@ class MyContactViewController: OCKListViewController {
          get rid of the warning without changing the line the warning is on.
          */
         var query = OCKContactQuery(for: Date())
+        query.ids = [personUUIDString]
         query.sortDescriptors.append(.familyName(ascending: true))
         query.sortDescriptors.append(.givenName(ascending: true))
 

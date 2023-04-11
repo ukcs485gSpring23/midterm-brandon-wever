@@ -36,8 +36,13 @@ struct ProfileView: View {
                                         Text(viewModel.sex.rawValue)
                                             .tag(OCKBiologicalSex.other(viewModel.sexOtherField))
                                     }
+                                    TextField("Allergies", text: $viewModel.allergies)
                                 }
                                 Section(header: Text("Contact")) {
+                                    TextField("Email Address", text: $viewModel.emailAddress)
+                                    TextField("Messaging Numbers", text: $viewModel.messagingNumbers)
+                                    TextField("Phone Numbers", text: $viewModel.phoneNumbers)
+                                    TextField("Other Contact Info", text: $viewModel.otherContactInfo)
                                     TextField("Street", text: $viewModel.street)
                                     TextField("City", text: $viewModel.city)
                                     TextField("State", text: $viewModel.state)
@@ -76,16 +81,6 @@ struct ProfileView: View {
                                         .background(Color(.red))
                                         .cornerRadius(15)
             }
-
-            NavigationLink(destination: CareKitTaskView(), label: {
-                Text("Add Task")
-            })
-            .font(.headline)
-            .foregroundColor(.white)
-            .padding()
-            .frame(width: 300, height: 50)
-            .background(Color(.darkGray))
-            .cornerRadius(15)
 
             .toolbar {
                             ToolbarItem(placement: .navigationBarLeading) {

@@ -121,6 +121,7 @@ enum HealthKitPossibilities: String, CaseIterable, Identifiable {
 enum CarePlanID: String {
     case health // Add custom id's for your Care Plans, these are examples
     case checkIn
+    case user
 }
 
 enum TaskID {
