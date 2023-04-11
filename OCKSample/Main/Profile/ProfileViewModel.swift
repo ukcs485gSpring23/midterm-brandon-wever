@@ -86,7 +86,52 @@ class ProfileViewModel: ObservableObject {
                 }
         }
     }
-    private var contact: OCKContact? // TODOx: need to publish contact updates like patient
+
+    // TODOx: need to publish contact updates like patient
+    @Published var contact: OCKContact? {
+        willSet {
+            if let currentStreet = newValue?.address?.street {
+                street = currentStreet
+            } else {
+                street = ""
+            }
+            if let currentCity = newValue?.address?.city {
+                city = currentCity
+            } else {
+                city = ""
+            }
+            if let currentState = newValue?.address?.state {
+                state = currentState
+            } else {
+                state = ""
+            }
+            if let currentZipCode = newValue?.address?.postalCode {
+                zipcode = currentZipCode
+            } else {
+                zipcode = ""
+            }
+            if let currentEmailAddress = newValue?.emailAddresses?.first?.value {
+                emailAddress = currentEmailAddress
+            } else {
+                emailAddress = ""
+            }
+            if let currentMessagingNumbers = newValue?.messagingNumbers?.first?.value {
+                messagingNumbers = currentMessagingNumbers
+            } else {
+                messagingNumbers = ""
+            }
+            if let currentPhoneNumbers = newValue?.phoneNumbers?.first?.value {
+                phoneNumbers = currentPhoneNumbers
+            } else {
+                phoneNumbers = ""
+            }
+            if let currentOtherContactInfo = newValue?.otherContactInfo?.first?.value {
+                otherContactInfo = currentOtherContactInfo
+            } else {
+                otherContactInfo = ""
+            }
+        }
+    }
     private(set) var storeManager: OCKSynchronizedStoreManager
     private(set) var alertMessage = "All changs saved successfully!"
 
@@ -387,7 +432,7 @@ class ProfileViewModel: ObservableObject {
                         }
 
                         let potentialOtherContactInfo = OCKLabeledValue(label: "Other Contact Info",
-                                                                        value: "otherContactInfo")
+                                                                        value: otherContactInfo)
 
                         if contact?.otherContactInfo != [potentialOtherContactInfo] {
                             contactHasBeenUpdated = true
