@@ -13,6 +13,7 @@ import CareKit
 import os.log
 
 struct ProfileView: View {
+    @EnvironmentObject private var appDelegate: AppDelegate
     @Environment(\.tintColor) private var tintColor
     @StateObject var viewModel = ProfileViewModel()
     @ObservedObject var loginViewModel: LoginViewModel
@@ -80,7 +81,11 @@ struct ProfileView: View {
                                         })
                                         .background(Color(.red))
                                         .cornerRadius(15)
+                                        .onReceive(appDelegate.$isFirstTimeLogin) { _ in
+                                                                viewModel.updateStoreManager()
+                                                            }
             }
+            
 
             .toolbar {
                             ToolbarItem(placement: .navigationBarLeading) {
@@ -91,6 +96,7 @@ struct ProfileView: View {
                                     MyContactView()
                     }
                 }
+                
                 ToolbarItem(placement: .navigationBarTrailing) {
                                     Button("Add Task") {
                                         viewModel.isPresentingAddTask = true

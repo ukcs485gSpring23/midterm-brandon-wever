@@ -79,6 +79,7 @@ enum Constants {
     static let storeInitialized = "storeInitialized"
     static let userTypeKey = "userType"
     static let card = "card"
+    static let survey = "survey"
 }
 
 enum MainViewPath {
