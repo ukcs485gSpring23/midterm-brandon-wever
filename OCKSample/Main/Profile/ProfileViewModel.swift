@@ -146,10 +146,6 @@ class ProfileViewModel: ObservableObject {
     init(storeManager: OCKSynchronizedStoreManager? = nil) {
         self.storeManager = storeManager ?? StoreManagerKey.defaultValue
         reloadViewModel()
-                NotificationCenter.default.addObserver(self,
-                                                       selector: #selector(reloadViewModel(_:)),
-                                                       name: Notification.Name(rawValue: Constants.shouldRefreshView),
-                                                       object: nil)
     }
     
     // MARK: Helpers (public)
@@ -195,12 +191,12 @@ class ProfileViewModel: ObservableObject {
                 var queryForCurrentContact = OCKContactQuery(for: Date())
                 queryForCurrentContact.ids = [uuid.uuidString]
                 let foundContact = try await storeManager.store.fetchAnyContacts(query: queryForCurrentContact)
-                            guard let currentContact = foundContact.first as? OCKContact else {
-                                // swiftlint:disable:next line_length
-                                Logger.profile.error("Error: Could not find contact with id \"\(uuid)\". It's possible they have never been saved.")
+                guard let currentContact = foundContact.first as? OCKContact else {
+                    // swiftlint:disable:next line_length
+                    Logger.profile.error("Error: Could not find contact with id \"\(uuid)\". It's possible they have never been saved.")
                                 return
-                            }
-                            self.observeContact(currentContact)
+                }
+                self.observeContact(currentContact)
                 Logger.profile.error("Could not find patient with id \"\(uuid)\". It's possible they have never been saved.")
                 return
             }
@@ -210,8 +206,8 @@ class ProfileViewModel: ObservableObject {
                         var queryForCurrentContact = OCKContactQuery(for: Date())
                         queryForCurrentContact.ids = [uuid.uuidString]
                         // swiftlint:disable:next line_length
-                        guard let foundContact = try await appDelegate.store?.fetchContacts(query: queryForCurrentContact),
-                            let currentContact = foundContact.first else {
+            let foundContact = try await storeManager.store.fetchAnyContacts(query: queryForCurrentContact)
+                        guard let currentContact = foundContact.first as? OCKContact else {
                             // swiftlint:disable:next line_length
                             Logger.profile.error("Error: Could not find contact with id \"\(uuid)\". It's possible they have never been saved.")
                             return
