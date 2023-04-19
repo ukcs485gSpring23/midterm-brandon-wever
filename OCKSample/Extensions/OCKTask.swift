@@ -27,7 +27,7 @@ extension OCKTask {
             userInfo?[Constants.card] = newValue.rawValue
         }
     }
-    
+
     var survey: Survey {
         get {
             guard let surveyInfo = userInfo?[Constants.survey],

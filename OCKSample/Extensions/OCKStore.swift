@@ -56,7 +56,7 @@ extension OCKStore {
                                           patientUUID: patientUUID)
         return userCarePlan.uuid
     }
-    
+
     @MainActor
     class func getCarePlanUUIDs() async throws -> [CarePlanID: UUID] {
         var results = [CarePlanID: UUID]()
@@ -110,7 +110,7 @@ extension OCKStore {
     func populateSampleData(_ patientUUID: UUID? = nil) async throws {
 
         let carePlanUUID = try await populateCarePlans(patientUUID: patientUUID)
-        
+
         let thisMorning = Calendar.current.startOfDay(for: Date())
 
         guard let aFewDaysAgo = Calendar.current.date(byAdding: .day, value: -4, to: thisMorning),
@@ -224,7 +224,7 @@ extension OCKStore {
         }()
 
         try await addContactsIfNotPresent([contact1, contact2])
-        
+
         func addOnboardingTask(_ carePlanUUID: UUID? = nil) async throws {
                 let onboardSchedule = OCKSchedule.dailyAtTime(
                             hour: 0, minutes: 0,

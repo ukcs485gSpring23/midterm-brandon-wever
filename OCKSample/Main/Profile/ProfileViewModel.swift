@@ -147,7 +147,7 @@ class ProfileViewModel: ObservableObject {
         self.storeManager = storeManager ?? StoreManagerKey.defaultValue
         reloadViewModel()
     }
-    
+
     // MARK: Helpers (public)
     func updateStoreManager() {
         self.storeManager = StoreManagerKey.defaultValue
@@ -186,7 +186,7 @@ class ProfileViewModel: ObservableObject {
         do {
             let foundPatient = try await storeManager.store.fetchAnyPatients(query: queryForCurrentPatient)
                 guard let currentPatient = foundPatient.first as? OCKPatient else {
-                // swiftlint:disable:next line_length
+
                 // Query the contact also so the user can edit
                 var queryForCurrentContact = OCKContactQuery(for: Date())
                 queryForCurrentContact.ids = [uuid.uuidString]
@@ -197,6 +197,7 @@ class ProfileViewModel: ObservableObject {
                                 return
                 }
                 self.observeContact(currentContact)
+                // swiftlint:disable:next line_length
                 Logger.profile.error("Could not find patient with id \"\(uuid)\". It's possible they have never been saved.")
                 return
             }
@@ -205,7 +206,7 @@ class ProfileViewModel: ObservableObject {
             // Query the contact also so the user can edit
                         var queryForCurrentContact = OCKContactQuery(for: Date())
                         queryForCurrentContact.ids = [uuid.uuidString]
-                        // swiftlint:disable:next line_length
+
             let foundContact = try await storeManager.store.fetchAnyContacts(query: queryForCurrentContact)
                         guard let currentContact = foundContact.first as? OCKContact else {
                             // swiftlint:disable:next line_length

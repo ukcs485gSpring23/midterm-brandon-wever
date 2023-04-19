@@ -57,7 +57,7 @@ extension OCKHealthKitPassthroughStore {
         }
 
     /*
-     TODO: You need to tie an OCKPatient.
+     TODOx: You need to tie an OCKPatient.
     */
     func populateSampleData(_ patientUUID: UUID? = nil) async throws {
         let carePlanUUID = try await populateCarePlans(patientUUID: patientUUID)
@@ -65,9 +65,9 @@ extension OCKHealthKitPassthroughStore {
         let schedule = OCKSchedule.dailyAtTime(
             hour: 8, minutes: 0, start: Date(), end: nil, text: nil,
             duration: .hours(12), targetValues: [OCKOutcomeValue(2000.0, units: "Steps")])
-        
+
         /*
-        TODO: You need to tie an OCKCarePlan to each HealthKit task. There was a
+        TODOx: You need to tie an OCKCarePlan to each HealthKit task. There was a
         a method added recently in Extensions/OCKStore.swift to assist with this. Use this method here
         and write a comment and state if it's an "instance method" or "type method". If you
         are trying to copy the method to this file, you are using the code incorrectly. Be

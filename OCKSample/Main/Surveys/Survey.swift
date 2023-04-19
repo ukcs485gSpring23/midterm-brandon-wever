@@ -21,8 +21,10 @@ enum Survey: String, CaseIterable, Identifiable {
         switch self {
         case .onboard:
             return Onboard()
-        default:
-            return Onboard()
+        case .checkIn:
+            return CheckIn()
+        case .rangeOfMotion:
+            return RangeOfMotion()
         }
     }
 }

@@ -134,7 +134,7 @@ class LoginViewModel: ObservableObject {
            guard let patient = savedPatient as? OCKPatient else {
                throw AppError.couldntCast
            }
-        
+
         // Added code to create a contact for the respective signed up user
         let newContact = OCKContact(id: remoteUUID.uuidString,
                                     name: newPatient.name,

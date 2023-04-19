@@ -123,6 +123,8 @@
 		A0E215AE29EF3811003885CE /* SurveyViewSynchronizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E215AD29EF3811003885CE /* SurveyViewSynchronizer.swift */; };
 		A0E215B029EF3B66003885CE /* CheckIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E215AF29EF3B66003885CE /* CheckIn.swift */; };
 		A0E215B129EF3B66003885CE /* CheckIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E215AF29EF3B66003885CE /* CheckIn.swift */; };
+		A0F7D5A729F0976E005D8ABE /* RangeOfMotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F7D5A629F0976E005D8ABE /* RangeOfMotion.swift */; };
+		A0F7D5A829F0976E005D8ABE /* RangeOfMotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F7D5A629F0976E005D8ABE /* RangeOfMotion.swift */; };
 		E72B2C0A226939E3009A9438 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72B2C09226939E3009A9438 /* AppDelegate.swift */; };
 		E72B2C14226939E4009A9438 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E72B2C12226939E4009A9438 /* LaunchScreen.storyboard */; };
 		E7440E4F229477F7007AD30A /* CareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7440E4E229477F7007AD30A /* CareViewController.swift */; };
@@ -253,6 +255,7 @@
 		A0E215AA29EF3474003885CE /* OCKAnyEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OCKAnyEvent.swift; sourceTree = "<group>"; };
 		A0E215AD29EF3811003885CE /* SurveyViewSynchronizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyViewSynchronizer.swift; sourceTree = "<group>"; };
 		A0E215AF29EF3B66003885CE /* CheckIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckIn.swift; sourceTree = "<group>"; };
+		A0F7D5A629F0976E005D8ABE /* RangeOfMotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeOfMotion.swift; sourceTree = "<group>"; };
 		E72B2C06226939E3009A9438 /* OCKSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OCKSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E72B2C09226939E3009A9438 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E72B2C13226939E4009A9438 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -548,6 +551,7 @@
 				A068518929E8987300B06A3D /* Survey.swift */,
 				A068518629E8981400B06A3D /* Surveyable.swift */,
 				A0E215AF29EF3B66003885CE /* CheckIn.swift */,
+				A0F7D5A629F0976E005D8ABE /* RangeOfMotion.swift */,
 			);
 			path = Surveys;
 			sourceTree = "<group>";
@@ -834,6 +838,7 @@
 				A0E215AC29EF3474003885CE /* OCKAnyEvent.swift in Sources */,
 				91AD923924A4C42D00925D4D /* OCKWatchSampleApp.swift in Sources */,
 				A0BC001129CA4E19004C8D0D /* OCKSynchronizedStoreManager.swift in Sources */,
+				A0F7D5A829F0976E005D8ABE /* RangeOfMotion.swift in Sources */,
 				A068518E29E898C600B06A3D /* Onboard.swift in Sources */,
 				70F03AA627860B2500E5AFB4 /* OCKPatient+Parse.swift in Sources */,
 				70221F3828D8C0CB00971195 /* AppDelegateKey.swift in Sources */,
@@ -897,6 +902,7 @@
 				7036E4D3256EBE35006E9A3C /* MainView.swift in Sources */,
 				918FDEC5271B4EA70045A0EF /* StoreManagerKey.swift in Sources */,
 				A005EFE029B9170000B6EDBF /* DimensionStyle.swift in Sources */,
+				A0F7D5A729F0976E005D8ABE /* RangeOfMotion.swift in Sources */,
 				A0BC001029CA4E19004C8D0D /* OCKSynchronizedStoreManager.swift in Sources */,
 				91693822271B897200A634ED /* Utility.swift in Sources */,
 				A068518A29E8987300B06A3D /* Survey.swift in Sources */,

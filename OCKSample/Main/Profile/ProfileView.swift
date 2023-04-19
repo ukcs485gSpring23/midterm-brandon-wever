@@ -85,7 +85,6 @@ struct ProfileView: View {
                                                                 viewModel.updateStoreManager()
                                                             }
             }
-            
 
             .toolbar {
                             ToolbarItem(placement: .navigationBarLeading) {
@@ -96,7 +95,7 @@ struct ProfileView: View {
                                     MyContactView()
                     }
                 }
-                
+
                 ToolbarItem(placement: .navigationBarTrailing) {
                                     Button("Add Task") {
                                         viewModel.isPresentingAddTask = true

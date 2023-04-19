@@ -38,11 +38,12 @@ import CareKitUI
 import os.log
 import ResearchKit
 
+// swiftlint:disable:next type_body_length
 class CareViewController: OCKDailyPageViewController {
-    
+
     private var isSyncing = false
     private var isLoading = false
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh,
@@ -64,13 +65,13 @@ class CareViewController: OCKDailyPageViewController {
                                                name: Notification.Name(rawValue: Constants.shouldRefreshView),
                                                object: nil)
     }
-    
+
     @objc private func updateSynchronizationProgress(_ notification: Notification) {
         guard let receivedInfo = notification.userInfo as? [String: Any],
               let progress = receivedInfo[Constants.progressUpdate] as? Int else {
             return
         }
-        
+
         DispatchQueue.main.async {
             switch progress {
             case 0, 100:
@@ -96,7 +97,7 @@ class CareViewController: OCKDailyPageViewController {
             }
         }
     }
-    
+
     @MainActor
     @objc private func synchronizeWithRemote() {
         guard !isSyncing else {
@@ -116,7 +117,7 @@ class CareViewController: OCKDailyPageViewController {
             }
         }
     }
-    
+
     @objc private func reloadView(_ notification: Notification? = nil) {
         guard !isLoading else {
             return
@@ -126,7 +127,7 @@ class CareViewController: OCKDailyPageViewController {
             self.reload()
         }
     }
-    
+
     /*
      This will be called each time the selected date changes.
      Use this as an opportunity to rebuild the content shown to the user.
@@ -134,7 +135,7 @@ class CareViewController: OCKDailyPageViewController {
     override func dailyPageViewController(_ dailyPageViewController: OCKDailyPageViewController,
                                           prepare listViewController: OCKListViewController, for date: Date) {
         let isCurrentDay = Calendar.current.isDate(date, inSameDayAs: Date())
-        
+
         Task {
             guard await checkIfOnboardingIsComplete() else {
                 let onboardSurvey = Onboard()
@@ -144,14 +145,14 @@ class CareViewController: OCKDailyPageViewController {
                                                               survey: onboardSurvey.createSurvey(),
                                                               extractOutcome: { _ in [OCKOutcomeValue(Date())] })
                 onboardCard.surveyDelegate = self
-                
+
                 listViewController.appendViewController(
                     onboardCard,
                     animated: false
                 )
                 return
             }
-            
+
                 let tasks = await self.fetchTasks(on: date)
                 tasks.compactMap {
                     let cards = self.taskViewController(for: $0, on: date)
@@ -171,7 +172,7 @@ class CareViewController: OCKDailyPageViewController {
                 self.isLoading = false
             }
         }
-        
+
         // swiftlint:disable:next cyclomatic_complexity
         private func taskViewController(for task: OCKAnyTask,
                                         on date: Date) -> [UIViewController]? {
@@ -191,13 +192,13 @@ class CareViewController: OCKDailyPageViewController {
                     storeManager: self.storeManager)
                     .padding([.vertical], 20)
                     .careKitStyle(CustomStylerKey.defaultValue)
-                
+
                 return [view.formattedHostingController()]
             case .instruction:
                 return [OCKInstructionsTaskViewController(task: task,
                                                           eventQuery: .init(for: date),
                                                           storeManager: self.storeManager)]
-                
+
             case .simple:
                 /*
                  Since the kegel task is only scheduled every other day, there will be cases
@@ -206,15 +207,15 @@ class CareViewController: OCKDailyPageViewController {
                 return [OCKSimpleTaskViewController(task: task,
                                                     eventQuery: .init(for: date),
                                                     storeManager: self.storeManager)]
-                
+
                 // Create a card for the doxylamine task if there are events for it on this day.
             case .checklist:
-                
+
                 return [OCKChecklistTaskViewController(
                     task: task,
                     eventQuery: .init(for: date),
                     storeManager: self.storeManager)]
-                
+
             case .button:
                 var cards = [UIViewController]()
                 // dynamic gradient colors
@@ -224,7 +225,7 @@ class CareViewController: OCKDailyPageViewController {
                 let nauseaGradientEnd = UIColor { traitCollection -> UIColor in
                     return traitCollection.userInterfaceStyle == .light ? #colorLiteral(red: 0, green: 0.2858072221, blue: 0.6897063851, alpha: 1) : #colorLiteral(red: 0.06253327429, green: 0.6597633362, blue: 0.8644603491, alpha: 1)
                 }
-                
+
                 // Create a plot comparing nausea to medication adherence.
                 let nauseaDataSeries = OCKDataSeriesConfiguration(
                     taskID: TaskID.nausea,
@@ -233,7 +234,7 @@ class CareViewController: OCKDailyPageViewController {
                     gradientEndColor: nauseaGradientEnd,
                     markerSize: 10,
                     eventAggregator: OCKEventAggregator.countOutcomeValues)
-                
+
                 let doxylamineDataSeries = OCKDataSeriesConfiguration(
                     taskID: TaskID.doxylamine,
                     legendTitle: "Doxylamine",
@@ -241,20 +242,20 @@ class CareViewController: OCKDailyPageViewController {
                     gradientEndColor: .systemGray,
                     markerSize: 10,
                     eventAggregator: OCKEventAggregator.countOutcomeValues)
-                
+
                 let insightsCard = OCKCartesianChartViewController(
                     plotType: .bar,
                     selectedDate: date,
                     configurations: [nauseaDataSeries, doxylamineDataSeries],
                     storeManager: self.storeManager)
-                
+
                 insightsCard.chartView.headerView.titleLabel.text = "Nausea & Doxylamine Intake"
                 insightsCard.chartView.headerView.detailLabel.text = "This Week"
                 insightsCard.chartView.headerView.accessibilityLabel = "Nausea & Doxylamine Intake, This Week"
-                
+
                 // uncomment to get associated button graph
                 // cards.append(insightsCard)
-                
+
                 /*
                  Also create a card that displays a single event.
                  The event query passed into the initializer specifies that only
@@ -264,9 +265,9 @@ class CareViewController: OCKDailyPageViewController {
                                                                 eventQuery: .init(for: date),
                                                                 storeManager: self.storeManager)
                 cards.append(nauseaCard)
-                
+
                 return cards
-                
+
             case .labeledValue:
                 let view = LabeledValueTaskView(
                     task: task,
@@ -274,15 +275,15 @@ class CareViewController: OCKDailyPageViewController {
                     storeManager: self.storeManager)
                     .padding([.vertical], 20)
                     .careKitStyle(CustomStylerKey.defaultValue)
-                
+
                 return [view.formattedHostingController()]
-                
+
             case .link:
                 let linkView = LinkView(title: .init("ChatGTP"),
                                         links: [.website("https://openai.com/blog/chatgpt",
                                                          title: "Ask chatGTP about your workout questions!")])
                 return [linkView.formattedHostingController()]
-                
+
             case .survey:
                 guard let surveyTask = task as? OCKTask else {
                     Logger.feed.error("Can only use a survey for an \"OCKTask\", not \(task.id)")
@@ -290,14 +291,14 @@ class CareViewController: OCKDailyPageViewController {
                 }
 
                 let surveyCard = OCKSurveyTaskViewController(taskID: surveyTask.survey.type().identifier(),
-                                                                     eventQuery: OCKEventQuery(for: date),
-                                                                     storeManager: self.storeManager,
-                                                                     survey: surveyTask.survey.type().createSurvey(),
-                                                                     viewSynchronizer: SurveyViewSynchronizer(),
-                                                                     extractOutcome: surveyTask.survey.type().extractAnswers)
+                                                            eventQuery: OCKEventQuery(for: date),
+                                                            storeManager: self.storeManager,
+                                                            survey: surveyTask.survey.type().createSurvey(),
+                                                            viewSynchronizer: SurveyViewSynchronizer(),
+                                                            extractOutcome: surveyTask.survey.type().extractAnswers)
                         surveyCard.surveyDelegate = self
                         return [surveyCard]
-                
+
             default:
                 // Check if a healthKit task
                 guard task is OCKHealthKitTask else {
@@ -311,11 +312,11 @@ class CareViewController: OCKDailyPageViewController {
                     storeManager: self.storeManager)
                     .padding([.vertical], 20)
                     .careKitStyle(CustomStylerKey.defaultValue)
-                
+
                 return [view.formattedHostingController()]
             }
         }
-        
+
         private func fetchTasks(on date: Date) async -> [OCKAnyTask] {
             var query = OCKTaskQuery(for: date)
             query.excludesTasksWithNoEvents = true
@@ -328,17 +329,17 @@ class CareViewController: OCKDailyPageViewController {
                 return []
             }
         }
-        
+
         @MainActor
         private func checkIfOnboardingIsComplete() async -> Bool {
             var query = OCKOutcomeQuery()
             query.taskIDs = [Onboard.identifier()]
-            
+
             guard let store = AppDelegateKey.defaultValue?.store else {
                 Logger.feed.error("CareKit store could not be unwrapped")
                 return false
             }
-            
+
             do {
                 let outcomes = try await store.fetchAnyOutcomes(query: query)
                 return !outcomes.isEmpty
@@ -348,12 +349,11 @@ class CareViewController: OCKDailyPageViewController {
         }
     }
 
-
 extension CareViewController: OCKSurveyTaskViewControllerDelegate {
     func surveyTask(viewController: OCKSurveyTaskViewController,
                     for task: OCKAnyTask,
                     didFinish result: Result<ORKTaskViewControllerFinishReason, Error>) {
-        
+
         if case let .success(reason) = result, reason == .completed {
             reload()
         }

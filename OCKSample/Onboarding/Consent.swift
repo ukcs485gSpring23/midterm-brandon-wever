@@ -41,6 +41,7 @@ let informedConsentHTML = """
         </ul>
         <p>By signing below, I acknowledge that I have read this consent carefully, that I understand all of its terms, and that I enter into this study voluntarily. I understand that my information will only be used and disclosed for the purposes described in the consent and I can withdraw from the study at any time.</p>
         <p>Please sign using your finger below.</p>
+        <br></br>
     </body>
     </html>
     """
