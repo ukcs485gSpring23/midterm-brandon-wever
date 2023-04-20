@@ -97,8 +97,9 @@ class CustomContactViewController: OCKListViewController {
         sure to understand the difference between a type method and instance method.
         */
 
-        /* Here, the checkIfOnboardingIsComplete method is a type method, because it was chainbly called from Utility.swift and did not need to have an instance of Utility created to modify the instance's value
-         */
+        // swiftlint:disable:next line_length
+        // Here, the checkIfOnboardingIsComplete method is a type method, because it was chainbly called from Utility.swift and did not need to have an instance of Utility created to modify the instance's value
+
         if await Utility.checkIfOnboardingIsComplete() {
             var query = OCKContactQuery(for: Date())
             query.sortDescriptors.append(.familyName(ascending: true))
@@ -127,7 +128,7 @@ class CustomContactViewController: OCKListViewController {
             self.displayContacts(self.allContacts)
 
         } else {
-            Logger.contact.error("Please complete the survey to se contacts")
+            Logger.contact.error("Please complete the survey to see contacts")
         }
 
     }

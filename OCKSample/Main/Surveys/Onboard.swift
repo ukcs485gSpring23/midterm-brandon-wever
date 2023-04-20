@@ -21,7 +21,7 @@ struct Onboard: Surveyable {
 #if canImport(ResearchKit)
 extension Onboard {
     /*
-     TODOx: Modify the onboarding so it properly represents the
+     TODOxx: Modify the onboarding so it properly represents the
      usecase of your application. Changes should be made to
      each of the steps in this type method. For example, you
      should change: title, detailText, image, and imageContentMode,
@@ -33,10 +33,11 @@ extension Onboard {
             identifier: "\(identifier()).welcome"
         )
 
-        welcomeInstructionStep.title = "Welcome!"
-        welcomeInstructionStep.detailText = "Thank you for joining our study. Tap Next to learn more before signing up."
-        welcomeInstructionStep.image = UIImage(named: "welcome-image")
-        welcomeInstructionStep.imageContentMode = .scaleAspectFill
+        welcomeInstructionStep.title = "Welcome to Alpine Fitness!"
+        // swiftlint:disable:next line_length
+        welcomeInstructionStep.detailText = "Thank you for starting your health journey with us. Continue by hitting next to complete the onboarding process."
+        welcomeInstructionStep.image = UIImage(named: "snowMountain.jpg")
+        welcomeInstructionStep.imageContentMode = .top
 
         // The Informed Consent Instruction step.
         let studyOverviewInstructionStep = ORKInstructionStep(
@@ -46,19 +47,25 @@ extension Onboard {
         studyOverviewInstructionStep.title = "Before You Join"
         studyOverviewInstructionStep.iconImage = UIImage(systemName: "checkmark.seal.fill")
 
+        let heartBodyLearnMoreInstructionStep = ORKLearnMoreInstructionStep(identifier: "heartBodyInstructionStep")
+        // swiftlint:disable:next line_length
+        heartBodyLearnMoreInstructionStep.text = "Enable health access permissions to use our app to it's full potential."
+        let defaultLearnMoreItem = ORKLearnMoreItem.init(text: "Learn More",
+                                                         learnMoreInstructionStep: heartBodyLearnMoreInstructionStep)
+
         let heartBodyItem = ORKBodyItem(
-            text: "The study will ask you to share some of your health data.",
+            text: "Our app will ask you to share some of your health data.",
             detailText: nil,
             image: UIImage(systemName: "heart.fill"),
-            learnMoreItem: nil,
+            learnMoreItem: defaultLearnMoreItem,
             bodyItemStyle: .image
         )
 
         let completeTasksBodyItem = ORKBodyItem(
-            text: "You will be asked to complete various tasks over the duration of the study.",
+            text: "You will be asked to complete various tasks when using our app.",
             detailText: nil,
             image: UIImage(systemName: "checkmark.circle.fill"),
-            learnMoreItem: nil,
+            learnMoreItem: defaultLearnMoreItem,
             bodyItemStyle: .image
         )
 
@@ -66,7 +73,7 @@ extension Onboard {
             text: "Before joining, we will ask you to sign an informed consent document.",
             detailText: nil,
             image: UIImage(systemName: "signature"),
-            learnMoreItem: nil,
+            learnMoreItem: defaultLearnMoreItem,
             bodyItemStyle: .image
         )
 
@@ -74,7 +81,7 @@ extension Onboard {
             text: "Your data is kept private and secure.",
             detailText: nil,
             image: UIImage(systemName: "lock.fill"),
-            learnMoreItem: nil,
+            learnMoreItem: defaultLearnMoreItem,
             bodyItemStyle: .image
         )
 
@@ -94,7 +101,7 @@ extension Onboard {
         webViewStep.showSignatureAfterContent = true
 
         // The Request Permissions step.
-        // TODOx: Set these to HealthKit info you want to display
+        // TODOxx: Set these to HealthKit info you want to display
         // by default.
         let healthKitTypesToWrite: Set<HKSampleType> = [
             .quantityType(forIdentifier: .bodyMassIndex)!,
@@ -106,7 +113,9 @@ extension Onboard {
             .characteristicType(forIdentifier: .dateOfBirth)!,
             .workoutType(),
             .quantityType(forIdentifier: .appleStandTime)!,
-            .quantityType(forIdentifier: .appleExerciseTime)!
+            .quantityType(forIdentifier: .appleExerciseTime)!,
+            .quantityType(forIdentifier: .heartRate)!,
+            .quantityType(forIdentifier: .bodyMassIndex)!
         ]
 
         let healthKitPermissionType = ORKHealthKitPermissionType(
