@@ -50,14 +50,30 @@ extension Onboard {
         let heartBodyLearnMoreInstructionStep = ORKLearnMoreInstructionStep(identifier: "heartBodyInstructionStep")
         // swiftlint:disable:next line_length
         heartBodyLearnMoreInstructionStep.text = "Enable health access permissions to use our app to it's full potential."
-        let defaultLearnMoreItem = ORKLearnMoreItem.init(text: "Learn More",
+        let heartBodyLearnMoreItem = ORKLearnMoreItem(text: "Learn More",
                                                          learnMoreInstructionStep: heartBodyLearnMoreInstructionStep)
+        // swiftlint:disable:next line_length
+        let completeTaskLearnMoreInstructionStep = ORKLearnMoreInstructionStep(identifier: "completeTaskInstructionStep")
+        completeTaskLearnMoreInstructionStep.text = "Complete tasks on this form to complete the onboarding process."
+        let completeTaskLearnMoreItem = ORKLearnMoreItem(text: "Learn More",
+                                                         learnMoreInstructionStep: completeTaskLearnMoreInstructionStep)
+
+        let signatureBodyInstructionStep = ORKLearnMoreInstructionStep(identifier: "signatureBodyInstructionStep")
+        signatureBodyInstructionStep.text = "Sign this form to ensure that you have agreed to the use terms of our app."
+        let signatureBodyLearnMoreItem = ORKLearnMoreItem(text: "Learn More",
+                                                 learnMoreInstructionStep: signatureBodyInstructionStep)
+
+        let secureDataLearnMoreInstructionStep = ORKLearnMoreInstructionStep(identifier: "secureDataInstructionStep")
+        // swiftlint:disable:next line_length
+        secureDataLearnMoreInstructionStep.text = "In our app, data security is our highest priority and we will ensure your data is always protected."
+        let secureDataLearnMoreItem = ORKLearnMoreItem(text: "Learn More",
+                                                       learnMoreInstructionStep: secureDataLearnMoreInstructionStep)
 
         let heartBodyItem = ORKBodyItem(
             text: "Our app will ask you to share some of your health data.",
             detailText: nil,
             image: UIImage(systemName: "heart.fill"),
-            learnMoreItem: defaultLearnMoreItem,
+            learnMoreItem: heartBodyLearnMoreItem,
             bodyItemStyle: .image
         )
 
@@ -65,7 +81,7 @@ extension Onboard {
             text: "You will be asked to complete various tasks when using our app.",
             detailText: nil,
             image: UIImage(systemName: "checkmark.circle.fill"),
-            learnMoreItem: defaultLearnMoreItem,
+            learnMoreItem: completeTaskLearnMoreItem,
             bodyItemStyle: .image
         )
 
@@ -73,7 +89,7 @@ extension Onboard {
             text: "Before joining, we will ask you to sign an informed consent document.",
             detailText: nil,
             image: UIImage(systemName: "signature"),
-            learnMoreItem: defaultLearnMoreItem,
+            learnMoreItem: signatureBodyLearnMoreItem,
             bodyItemStyle: .image
         )
 
@@ -81,7 +97,7 @@ extension Onboard {
             text: "Your data is kept private and secure.",
             detailText: nil,
             image: UIImage(systemName: "lock.fill"),
-            learnMoreItem: defaultLearnMoreItem,
+            learnMoreItem: secureDataLearnMoreItem,
             bodyItemStyle: .image
         )
 
@@ -115,7 +131,8 @@ extension Onboard {
             .quantityType(forIdentifier: .appleStandTime)!,
             .quantityType(forIdentifier: .appleExerciseTime)!,
             .quantityType(forIdentifier: .heartRate)!,
-            .quantityType(forIdentifier: .bodyMassIndex)!
+            .quantityType(forIdentifier: .bodyMassIndex)!,
+            .quantityType(forIdentifier: .stepCount)!
         ]
 
         let healthKitPermissionType = ORKHealthKitPermissionType(
@@ -140,16 +157,16 @@ extension Onboard {
 
         requestPermissionsStep.title = "Health Data Request"
         // swiftlint:disable:next line_length
-        requestPermissionsStep.text = "Please review the health data types below and enable sharing to contribute to the study."
+        requestPermissionsStep.text = "Please review the health data types below and enable sharing to contribute to your experience with our application."
 
         // Completion Step
         let completionStep = ORKCompletionStep(
             identifier: "\(identifier()).completionStep"
         )
 
-        completionStep.title = "Enrollment Complete"
+        completionStep.title = "Onboarding Complete"
         // swiftlint:disable:next line_length
-        completionStep.text = "Thank you for enrolling in this study. Your participation will contribute to meaningful research!"
+        completionStep.text = "Thank you for enrolling in this application. Your are one step closer to achieving your goals!"
 
         let surveyTask = ORKOrderedTask(
             identifier: identifier(),

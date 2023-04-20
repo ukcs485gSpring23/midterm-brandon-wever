@@ -73,10 +73,15 @@ extension OCKHealthKitPassthroughStore {
         are trying to copy the method to this file, you are using the code incorrectly. Be
         sure to understand the difference between a type method and instance method.
         */
+
+        // swiftlint:disable:next line_length
+        // The getCarePlanUUID's method is a type method because it can be called alone and does not need an instance of the OCKStore to be created in order to be used.
+
+        let carePlanUUIDs = try await OCKStore.getCarePlanUUIDs()
         var steps = OCKHealthKitTask(
             id: TaskID.steps,
             title: "Steps",
-            carePlanUUID: carePlanUUID,
+            carePlanUUID: carePlanUUIDs.first?.value,
             schedule: schedule,
             healthKitLinkage: OCKHealthKitLinkage(
                 quantityIdentifier: .stepCount,

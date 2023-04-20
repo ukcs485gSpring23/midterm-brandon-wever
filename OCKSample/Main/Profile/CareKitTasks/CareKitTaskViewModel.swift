@@ -141,27 +141,35 @@ class CareKitTaskViewModel: ObservableObject {
             error = AppError.couldntBeUnwrapped
             return
         }
-        let uniqueId = UUID().uuidString // Create a unique id for each task
-        var task = OCKTask(id: uniqueId,
-                           title: title,
-                           carePlanUUID: nil,
-                           schedule: .dailyAtTime(hour: 0,
-                                                  minutes: 0,
-                                                  start: Date(),
-                                                  end: nil,
-                                                  text: nil))
-        task.instructions = instructions
-        task.card = selectedCard
-        task.schedule = setSchedule(userSchedule: selectedSchedule)
 
         do {
-            try await appDelegate.storeManager.addTasksIfNotPresent([task])
-            Logger.careKitTask.info("Saved task: \(task.id, privacy: .private)")
-            // Notify views they should refresh tasks if needed
-            NotificationCenter.default.post(.init(name: Notification.Name(rawValue: Constants.shouldRefreshView)))
+            let carePlanUUIDs = try await OCKStore.getCarePlanUUIDs()
+
+            let uniqueId = UUID().uuidString // Create a unique id for each task
+            var task = OCKTask(id: uniqueId,
+                               title: title,
+                               carePlanUUID: carePlanUUIDs.first?.value,
+                               schedule: .dailyAtTime(hour: 0,
+                                                      minutes: 0,
+                                                      start: Date(),
+                                                      end: nil,
+                                                      text: nil))
+            task.instructions = instructions
+            task.card = selectedCard
+            task.schedule = setSchedule(userSchedule: selectedSchedule)
+
+            do {
+                try await appDelegate.storeManager.addTasksIfNotPresent([task])
+                Logger.careKitTask.info("Saved task: \(task.id, privacy: .private)")
+                // Notify views they should refresh tasks if needed
+                NotificationCenter.default.post(.init(name: Notification.Name(rawValue: Constants.shouldRefreshView)))
+            } catch {
+                self.error = AppError.errorString("Could not add task: \(error.localizedDescription)")
+            }
         } catch {
-            self.error = AppError.errorString("Could not add task: \(error.localizedDescription)")
+            self.error = AppError.errorString("Could not getCarePlanUUIDs")
         }
+
     }
 
     func addHealthKitTask() async {
@@ -169,31 +177,38 @@ class CareKitTaskViewModel: ObservableObject {
             error = AppError.couldntBeUnwrapped
             return
         }
-        let uniqueId = UUID().uuidString // Create a unique id for each task
-        var healthKitTask = OCKHealthKitTask(id: uniqueId,
-                                             title: title,
-                                             carePlanUUID: nil,
-                                             schedule: .dailyAtTime(hour: 0,
-                                                                    minutes: 0,
-                                                                    start: Date(),
-                                                                    end: nil,
-                                                                    text: nil),
-                                             healthKitLinkage: .init(quantityIdentifier: .stepCount,
-                                                                     quantityType: .cumulative,
-                                                                     unit: .count()))
-        healthKitTask.instructions = instructions
-        healthKitTask.card = selectedCard
-        healthKitTask.schedule = setSchedule(userSchedule: selectedSchedule)
-        healthKitTask.healthKitLinkage = setHealthKitLinkage(userHealthKitTask: selectedHealthKitTask)
+
         do {
-            try await appDelegate.storeManager.addTasksIfNotPresent([healthKitTask])
-            Logger.careKitTask.info("Saved HealthKitTask: \(healthKitTask.id, privacy: .private)")
-            // Notify views they should refresh tasks if needed
-            NotificationCenter.default.post(.init(name: Notification.Name(rawValue: Constants.shouldRefreshView)))
-            // Ask HealthKit store for permissions after each new task
-            Utility.requestHealthKitPermissions()
+            let carePlanUUIDs = try await OCKStore.getCarePlanUUIDs()
+            let uniqueId = UUID().uuidString // Create a unique id for each task
+            var healthKitTask = OCKHealthKitTask(id: uniqueId,
+                                                 title: title,
+                                                 carePlanUUID: carePlanUUIDs.first?.value,
+                                                 schedule: .dailyAtTime(hour: 0,
+                                                                        minutes: 0,
+                                                                        start: Date(),
+                                                                        end: nil,
+                                                                        text: nil),
+                                                 healthKitLinkage: .init(quantityIdentifier: .stepCount,
+                                                                         quantityType: .cumulative,
+                                                                         unit: .count()))
+            healthKitTask.instructions = instructions
+            healthKitTask.card = selectedCard
+            healthKitTask.schedule = setSchedule(userSchedule: selectedSchedule)
+            healthKitTask.healthKitLinkage = setHealthKitLinkage(userHealthKitTask: selectedHealthKitTask)
+            do {
+                try await appDelegate.storeManager.addTasksIfNotPresent([healthKitTask])
+                Logger.careKitTask.info("Saved HealthKitTask: \(healthKitTask.id, privacy: .private)")
+                // Notify views they should refresh tasks if needed
+                NotificationCenter.default.post(.init(name: Notification.Name(rawValue: Constants.shouldRefreshView)))
+                // Ask HealthKit store for permissions after each new task
+                Utility.requestHealthKitPermissions()
+            } catch {
+                self.error = AppError.errorString("Could not add task: \(error.localizedDescription)")
+            }
         } catch {
-            self.error = AppError.errorString("Could not add task: \(error.localizedDescription)")
+            self.error = AppError.errorString("Could not getCarePlanUUIDs")
         }
+
     }
 }
