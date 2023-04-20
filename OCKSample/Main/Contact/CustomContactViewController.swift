@@ -66,6 +66,7 @@ class CustomContactViewController: OCKListViewController {
     @objc private func presentContactsListViewController() {
 
         let contactPicker = CNContactPickerViewController()
+        contactPicker.view.tintColor = self.view.tintColor
         contactPicker.delegate = self
         contactPicker.predicateForEnablingContact = NSPredicate(
           format: "phoneNumbers.@count > 0")
@@ -87,31 +88,49 @@ class CustomContactViewController: OCKListViewController {
             return
         }
 
-        var query = OCKContactQuery(for: Date())
-        query.sortDescriptors.append(.familyName(ascending: true))
-        query.sortDescriptors.append(.givenName(ascending: true))
+        /*
+        TODOxx: You should not show any contacts if your user has not completed the
+        onboarding task yet. There was a method added recently in Utility.swift to
+        assist with this. Use this method here and write a comment and state if
+        it's an "instance method" or "type method". If you are trying to copy the
+        method to this file, you are using the code incorrectly. Be
+        sure to understand the difference between a type method and instance method.
+        */
 
-        let contacts = try await storeManager.store.fetchAnyContacts(query: query)
+        // swiftlint:disable:next line_length
+        // Here, the checkIfOnboardingIsComplete method is a type method, because it was chainbly called from Utility.swift and did not need to have an instance of Utility created to modify the instance's value
 
-        guard let convertedContacts = contacts as? [OCKContact],
-              let personUUIDString = (try? await Utility.getRemoteClockUUID())?.uuidString else {
-            Logger.contact.error("Could not convert contacts")
-            return
-        }
+        if await Utility.checkIfOnboardingIsComplete() {
+            var query = OCKContactQuery(for: Date())
+            query.sortDescriptors.append(.familyName(ascending: true))
+            query.sortDescriptors.append(.givenName(ascending: true))
 
-        // TODOx: Modify this filter to not show the contact info for this user
-        let filterdContacts = convertedContacts.filter { convertedContact in
-            if convertedContact.id != personUUIDString {
-                Logger.contact.info("Contact filtered: \(convertedContact.id)")
-                return true
-            } else {
-                return false
+            let contacts = try await storeManager.store.fetchAnyContacts(query: query)
+
+            guard let convertedContacts = contacts as? [OCKContact],
+                  let personUUIDString = (try? await Utility.getRemoteClockUUID())?.uuidString else {
+                Logger.contact.error("Could not convert contacts")
+                return
             }
+
+            // TODOx: Modify this filter to not show the contact info for this user
+            let filterdContacts = convertedContacts.filter { convertedContact in
+                if convertedContact.id != personUUIDString {
+                    Logger.contact.info("Contact filtered: \(convertedContact.id)")
+                    return true
+                } else {
+                    return false
+                }
+            }
+
+            self.clearAndKeepSearchBar()
+            self.allContacts = filterdContacts
+            self.displayContacts(self.allContacts)
+
+        } else {
+            Logger.contact.error("Please complete the survey to see contacts")
         }
 
-        self.clearAndKeepSearchBar()
-        self.allContacts = filterdContacts
-        self.displayContacts(self.allContacts)
     }
 
     @MainActor

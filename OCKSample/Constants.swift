@@ -79,6 +79,7 @@ enum Constants {
     static let storeInitialized = "storeInitialized"
     static let userTypeKey = "userType"
     static let card = "card"
+    static let survey = "survey"
 }
 
 enum MainViewPath {
@@ -96,6 +97,7 @@ enum CareKitCard: String, CaseIterable, Identifiable {
     case link = "Link"
     case numericProgress = "Numeric Progress"
     case simple = "Simple"
+    case survey = "Survey"
 }
 
 enum SchedulePossibilities: String, CaseIterable, Identifiable {
@@ -118,7 +120,8 @@ enum HealthKitPossibilities: String, CaseIterable, Identifiable {
     case weightTracker = "Weight Tracker"
 }
 
-enum CarePlanID: String {
+enum CarePlanID: String, CaseIterable, Identifiable {
+    var id: Self { self }
     case health // Add custom id's for your Care Plans, these are examples
     case checkIn
     case user

@@ -31,10 +31,6 @@ extension AppDelegate: UIApplicationDelegate {
                         let uuid = try await Utility.getRemoteClockUUID()
                         try? await setupRemotes(uuid: uuid)
                         parseRemote.automaticallySynchronizes = true
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                            // swiftlint:disable:next line_length
-                            NotificationCenter.default.post(.init(name: Notification.Name(rawValue: Constants.requestSync)))
-                        }
                     } catch {
                         Logger.appDelegate.error("User is logged in, but missing remoteId: \(error)")
                         try await setupRemotes()

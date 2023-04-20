@@ -94,6 +94,15 @@
 		A005EFDE29B914DB00B6EDBF /* AnimationStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A005EFDC29B914DB00B6EDBF /* AnimationStyle.swift */; };
 		A005EFE029B9170000B6EDBF /* DimensionStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A005EFDF29B9170000B6EDBF /* DimensionStyle.swift */; };
 		A005EFE129B9170000B6EDBF /* DimensionStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A005EFDF29B9170000B6EDBF /* DimensionStyle.swift */; };
+		A068518429E896D800B06A3D /* ResearchKit in Frameworks */ = {isa = PBXBuildFile; productRef = A068518329E896D800B06A3D /* ResearchKit */; };
+		A068518729E8981400B06A3D /* Surveyable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A068518629E8981400B06A3D /* Surveyable.swift */; };
+		A068518829E8981400B06A3D /* Surveyable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A068518629E8981400B06A3D /* Surveyable.swift */; };
+		A068518A29E8987300B06A3D /* Survey.swift in Sources */ = {isa = PBXBuildFile; fileRef = A068518929E8987300B06A3D /* Survey.swift */; };
+		A068518B29E8987300B06A3D /* Survey.swift in Sources */ = {isa = PBXBuildFile; fileRef = A068518929E8987300B06A3D /* Survey.swift */; };
+		A068518D29E898C600B06A3D /* Onboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A068518C29E898C600B06A3D /* Onboard.swift */; };
+		A068518E29E898C600B06A3D /* Onboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A068518C29E898C600B06A3D /* Onboard.swift */; };
+		A068519229E89B4F00B06A3D /* Consent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A068519129E89B4F00B06A3D /* Consent.swift */; };
+		A068519329E89B4F00B06A3D /* Consent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A068519129E89B4F00B06A3D /* Consent.swift */; };
 		A083ABC729DF675F0043BD1C /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A083ABC629DF675F0043BD1C /* ImagePicker.swift */; };
 		A083ABCA29DF67E20043BD1C /* ProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A083ABC929DF67E20043BD1C /* ProfileImageView.swift */; };
 		A083ABCC29DF6D4B0043BD1C /* MyContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A083ABCB29DF6D4B0043BD1C /* MyContactView.swift */; };
@@ -109,6 +118,13 @@
 		A0BC001129CA4E19004C8D0D /* OCKSynchronizedStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BC000F29CA4E19004C8D0D /* OCKSynchronizedStoreManager.swift */; };
 		A0BEE89429B14F31003638BC /* AppearanceStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BEE89329B14F31003638BC /* AppearanceStyle.swift */; };
 		A0BEE89529B14F31003638BC /* AppearanceStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BEE89329B14F31003638BC /* AppearanceStyle.swift */; };
+		A0E215AB29EF3474003885CE /* OCKAnyEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E215AA29EF3474003885CE /* OCKAnyEvent.swift */; };
+		A0E215AC29EF3474003885CE /* OCKAnyEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E215AA29EF3474003885CE /* OCKAnyEvent.swift */; };
+		A0E215AE29EF3811003885CE /* SurveyViewSynchronizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E215AD29EF3811003885CE /* SurveyViewSynchronizer.swift */; };
+		A0E215B029EF3B66003885CE /* CheckIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E215AF29EF3B66003885CE /* CheckIn.swift */; };
+		A0E215B129EF3B66003885CE /* CheckIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E215AF29EF3B66003885CE /* CheckIn.swift */; };
+		A0F7D5A729F0976E005D8ABE /* RangeOfMotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F7D5A629F0976E005D8ABE /* RangeOfMotion.swift */; };
+		A0F7D5A829F0976E005D8ABE /* RangeOfMotion.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F7D5A629F0976E005D8ABE /* RangeOfMotion.swift */; };
 		E72B2C0A226939E3009A9438 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72B2C09226939E3009A9438 /* AppDelegate.swift */; };
 		E72B2C14226939E4009A9438 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E72B2C12226939E4009A9438 /* LaunchScreen.storyboard */; };
 		E7440E4F229477F7007AD30A /* CareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7440E4E229477F7007AD30A /* CareViewController.swift */; };
@@ -222,6 +238,10 @@
 		A0008A1629DCBAA9000969FD /* CustomContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomContactViewController.swift; sourceTree = "<group>"; };
 		A005EFDC29B914DB00B6EDBF /* AnimationStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationStyle.swift; sourceTree = "<group>"; };
 		A005EFDF29B9170000B6EDBF /* DimensionStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DimensionStyle.swift; sourceTree = "<group>"; };
+		A068518629E8981400B06A3D /* Surveyable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Surveyable.swift; sourceTree = "<group>"; };
+		A068518929E8987300B06A3D /* Survey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Survey.swift; sourceTree = "<group>"; };
+		A068518C29E898C600B06A3D /* Onboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboard.swift; sourceTree = "<group>"; };
+		A068519129E89B4F00B06A3D /* Consent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Consent.swift; sourceTree = "<group>"; };
 		A083ABC629DF675F0043BD1C /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		A083ABC929DF67E20043BD1C /* ProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageView.swift; sourceTree = "<group>"; };
 		A083ABCB29DF6D4B0043BD1C /* MyContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyContactView.swift; sourceTree = "<group>"; };
@@ -232,6 +252,10 @@
 		A0BC000D29CA4D9C004C8D0D /* CareKitTaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareKitTaskViewModel.swift; sourceTree = "<group>"; };
 		A0BC000F29CA4E19004C8D0D /* OCKSynchronizedStoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OCKSynchronizedStoreManager.swift; sourceTree = "<group>"; };
 		A0BEE89329B14F31003638BC /* AppearanceStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceStyle.swift; sourceTree = "<group>"; };
+		A0E215AA29EF3474003885CE /* OCKAnyEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OCKAnyEvent.swift; sourceTree = "<group>"; };
+		A0E215AD29EF3811003885CE /* SurveyViewSynchronizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyViewSynchronizer.swift; sourceTree = "<group>"; };
+		A0E215AF29EF3B66003885CE /* CheckIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckIn.swift; sourceTree = "<group>"; };
+		A0F7D5A629F0976E005D8ABE /* RangeOfMotion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeOfMotion.swift; sourceTree = "<group>"; };
 		E72B2C06226939E3009A9438 /* OCKSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OCKSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E72B2C09226939E3009A9438 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E72B2C13226939E4009A9438 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -248,6 +272,7 @@
 			files = (
 				70202EC12807333900CF73FB /* CareKit in Frameworks */,
 				918FDEAF271B3F8F0045A0EF /* ParseCareKit in Frameworks */,
+				A068518429E896D800B06A3D /* ResearchKit in Frameworks */,
 				70202EC52807333A00CF73FB /* CareKitUI in Frameworks */,
 				A0BC000629CA3FAA004C8D0D /* CareKitUtilities in Frameworks */,
 				708542F9276687F90029E888 /* HealthKit.framework in Frameworks */,
@@ -295,6 +320,7 @@
 			isa = PBXGroup;
 			children = (
 				E7C37848228F887800E982D8 /* TipView.swift */,
+				A0E215AD29EF3811003885CE /* SurveyViewSynchronizer.swift */,
 			);
 			path = CustomCards;
 			sourceTree = "<group>";
@@ -320,13 +346,14 @@
 		703088772582727500FFABB6 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				70221F2728D7809800971195 /* MainTabView.swift */,
-				7036E4D2256EBE35006E9A3C /* MainView.swift */,
 				70308878258272CD00FFABB6 /* Care */,
 				7030887D258272F400FFABB6 /* Contact */,
 				7030887E2582731300FFABB6 /* Login */,
+				70221F2728D7809800971195 /* MainTabView.swift */,
+				7036E4D2256EBE35006E9A3C /* MainView.swift */,
 				7030887C258272E700FFABB6 /* Profile */,
 				91693819271B64CB00A634ED /* Stylers */,
+				A068518529E897CF00B06A3D /* Surveys */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -466,6 +493,7 @@
 				A0BC000729CA489B004C8D0D /* OCKTask.swift */,
 				A0BC000F29CA4E19004C8D0D /* OCKSynchronizedStoreManager.swift */,
 				A086119229CBAD5F007726D4 /* OCKHealthKitTask+Custom.swift */,
+				A0E215AA29EF3474003885CE /* OCKAnyEvent.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -514,6 +542,26 @@
 				91AD924524A4C42E00925D4D /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		A068518529E897CF00B06A3D /* Surveys */ = {
+			isa = PBXGroup;
+			children = (
+				A068518C29E898C600B06A3D /* Onboard.swift */,
+				A068518929E8987300B06A3D /* Survey.swift */,
+				A068518629E8981400B06A3D /* Surveyable.swift */,
+				A0E215AF29EF3B66003885CE /* CheckIn.swift */,
+				A0F7D5A629F0976E005D8ABE /* RangeOfMotion.swift */,
+			);
+			path = Surveys;
+			sourceTree = "<group>";
+		};
+		A068519029E89B3100B06A3D /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				A068519129E89B4F00B06A3D /* Consent.swift */,
+			);
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 		A083ABC829DF679E0043BD1C /* MyContact */ = {
@@ -571,6 +619,7 @@
 				918FDEBA271B4DF60045A0EF /* Extensions */,
 				703088772582727500FFABB6 /* Main */,
 				918FDEB3271B402F0045A0EF /* Models */,
+				A068519029E89B3100B06A3D /* Onboarding */,
 				71A79C8A2294FBA1002B96D3 /* Supporting Files */,
 				70F921AA27CABDE900368CEC /* WatchConnectivity */,
 			);
@@ -638,6 +687,7 @@
 				70202EC22807333900CF73FB /* CareKitFHIR */,
 				70202EC42807333A00CF73FB /* CareKitUI */,
 				A0BC000529CA3FAA004C8D0D /* CareKitUtilities */,
+				A068518329E896D800B06A3D /* ResearchKit */,
 			);
 			productName = CareKitDemoApp;
 			productReference = E72B2C06226939E3009A9438 /* OCKSample.app */;
@@ -679,6 +729,7 @@
 				918FDEAD271B3F8F0045A0EF /* XCRemoteSwiftPackageReference "ParseCareKit" */,
 				70202EBF2807333900CF73FB /* XCRemoteSwiftPackageReference "CareKit" */,
 				A0BC000429CA3FAA004C8D0D /* XCRemoteSwiftPackageReference "CareKitUtilities" */,
+				A068518229E896D800B06A3D /* XCRemoteSwiftPackageReference "ResearchKit" */,
 			);
 			productRefGroup = E72B2C07226939E3009A9438 /* Products */;
 			projectDirPath = "";
@@ -770,6 +821,7 @@
 				A0BC000929CA489B004C8D0D /* OCKTask.swift in Sources */,
 				A005EFDE29B914DB00B6EDBF /* AnimationStyle.swift in Sources */,
 				918FDEB8271B49060045A0EF /* Logger.swift in Sources */,
+				A068518B29E8987300B06A3D /* Survey.swift in Sources */,
 				91AD923B24A4C42D00925D4D /* CareView.swift in Sources */,
 				A086119429CBAD5F007726D4 /* OCKHealthKitTask+Custom.swift in Sources */,
 				70F921A927CA9A4000368CEC /* CustomStylerKey.swift in Sources */,
@@ -780,8 +832,14 @@
 				70F921B227CAC16E00368CEC /* RemoteSessionDelegate.swift in Sources */,
 				70221F2F28D7CDE400971195 /* AppDelegate+ParseRemoteDelegate.swift in Sources */,
 				7083A857279CA40F00B3832E /* PCKUtility.swift in Sources */,
+				A068519329E89B4F00B06A3D /* Consent.swift in Sources */,
+				A0E215B129EF3B66003885CE /* CheckIn.swift in Sources */,
+				A068518829E8981400B06A3D /* Surveyable.swift in Sources */,
+				A0E215AC29EF3474003885CE /* OCKAnyEvent.swift in Sources */,
 				91AD923924A4C42D00925D4D /* OCKWatchSampleApp.swift in Sources */,
 				A0BC001129CA4E19004C8D0D /* OCKSynchronizedStoreManager.swift in Sources */,
+				A0F7D5A829F0976E005D8ABE /* RangeOfMotion.swift in Sources */,
+				A068518E29E898C600B06A3D /* Onboard.swift in Sources */,
 				70F03AA627860B2500E5AFB4 /* OCKPatient+Parse.swift in Sources */,
 				70221F3828D8C0CB00971195 /* AppDelegateKey.swift in Sources */,
 				9103AA5227B8C913002C921E /* FontColorKey.swift in Sources */,
@@ -812,7 +870,9 @@
 				A0BEE89429B14F31003638BC /* AppearanceStyle.swift in Sources */,
 				70F921AC27CABE3000368CEC /* SessionDelegate.swift in Sources */,
 				70F0EFEA28C2EE6C0005B5A2 /* AppDelegateKey.swift in Sources */,
+				A068519229E89B4F00B06A3D /* Consent.swift in Sources */,
 				7036E64025717F85006E9A3C /* Constants.swift in Sources */,
+				A0E215AE29EF3811003885CE /* SurveyViewSynchronizer.swift in Sources */,
 				A086119329CBAD5F007726D4 /* OCKHealthKitTask+Custom.swift in Sources */,
 				7036E4CE256E9A0C006E9A3C /* ContactView.swift in Sources */,
 				A083ABCE29DF6D850043BD1C /* MyContactViewController.swift in Sources */,
@@ -830,6 +890,7 @@
 				7036E4C4256E0A48006E9A3C /* CareView.swift in Sources */,
 				70F921B027CABED600368CEC /* LocalSyncSessionDelegate.swift in Sources */,
 				70221F2828D7809800971195 /* MainTabView.swift in Sources */,
+				A068518D29E898C600B06A3D /* Onboard.swift in Sources */,
 				918FDEC3271B4E950045A0EF /* TintColorKey.swift in Sources */,
 				A0BC000E29CA4D9C004C8D0D /* CareKitTaskViewModel.swift in Sources */,
 				A005EFDD29B914DB00B6EDBF /* AnimationStyle.swift in Sources */,
@@ -841,16 +902,21 @@
 				7036E4D3256EBE35006E9A3C /* MainView.swift in Sources */,
 				918FDEC5271B4EA70045A0EF /* StoreManagerKey.swift in Sources */,
 				A005EFE029B9170000B6EDBF /* DimensionStyle.swift in Sources */,
+				A0F7D5A729F0976E005D8ABE /* RangeOfMotion.swift in Sources */,
 				A0BC001029CA4E19004C8D0D /* OCKSynchronizedStoreManager.swift in Sources */,
 				91693822271B897200A634ED /* Utility.swift in Sources */,
+				A068518A29E8987300B06A3D /* Survey.swift in Sources */,
+				A0E215AB29EF3474003885CE /* OCKAnyEvent.swift in Sources */,
 				A0008A1729DCBAA9000969FD /* CustomContactViewController.swift in Sources */,
 				A083ABCC29DF6D4B0043BD1C /* MyContactView.swift in Sources */,
+				A068518729E8981400B06A3D /* Surveyable.swift in Sources */,
 				707CC718254DA91900116728 /* OCKLocalization.swift in Sources */,
 				E7C37849228F887800E982D8 /* TipView.swift in Sources */,
 				70077597252228E900EC0EDA /* User.swift in Sources */,
 				7036E4C9256E1A6F006E9A3C /* ProfileView.swift in Sources */,
 				7083A856279CA40A00B3832E /* PCKUtility.swift in Sources */,
 				70F921AE27CABE7700368CEC /* RemoteSessionDelegate.swift in Sources */,
+				A0E215B029EF3B66003885CE /* CheckIn.swift in Sources */,
 				70F03A952786093B00E5AFB4 /* OCKHealthKitPassthroughStore.swift in Sources */,
 				7036E4BF256DA089006E9A3C /* LoginViewModel.swift in Sources */,
 				7036E517256F2413006E9A3C /* ProfileViewModel.swift in Sources */,
@@ -1280,6 +1346,14 @@
 				minimumVersion = 0.12.0;
 			};
 		};
+		A068518229E896D800B06A3D /* XCRemoteSwiftPackageReference "ResearchKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/StanfordBDHG/ResearchKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.2.9;
+			};
+		};
 		A0BC000429CA3FAA004C8D0D /* XCRemoteSwiftPackageReference "CareKitUtilities" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/netreconlab/CareKitUtilities.git";
@@ -1320,6 +1394,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 918FDEAD271B3F8F0045A0EF /* XCRemoteSwiftPackageReference "ParseCareKit" */;
 			productName = ParseCareKit;
+		};
+		A068518329E896D800B06A3D /* ResearchKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A068518229E896D800B06A3D /* XCRemoteSwiftPackageReference "ResearchKit" */;
+			productName = ResearchKit;
 		};
 		A0BC000529CA3FAA004C8D0D /* CareKitUtilities */ = {
 			isa = XCSwiftPackageProductDependency;
