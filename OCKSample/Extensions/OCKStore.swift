@@ -156,6 +156,16 @@ extension OCKStore {
         nausea.instructions = "Tap the button below anytime you experience nausea."
         nausea.asset = "bed.double"
         nausea.card = .button
+         
+         //TODOx: here is his PR code
+         var repetition = OCKTask(id: TaskID.repetition,
+                                  title: "Track your repetitions",
+                                  carePlanUUID: nil,
+                                  schedule: nauseaSchedule)
+         repetition.impactsAdherence = false
+         repetition.instructions = "Input how many reps you completed."
+         repetition.asset = "repeat.circle"
+         repetition.card = .custom
 
         let kegelElement = OCKScheduleElement(start: beforeBreakfast,
                                               end: nil,
@@ -181,7 +191,7 @@ extension OCKStore {
         stretch.asset = "figure.walk"
         stretch.card = .instruction
 
-        try await addTasksIfNotPresent([nausea, doxylamine, kegels, stretch])
+         try await addTasksIfNotPresent([nausea, doxylamine, kegels, stretch, repetition])
          */
         let carePlanUUIDs = try await Self.getCarePlanUUIDs()
         try await addOnboardingTask(carePlanUUIDs[.health])
