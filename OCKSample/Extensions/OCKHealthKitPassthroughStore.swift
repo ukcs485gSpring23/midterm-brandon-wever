@@ -78,6 +78,7 @@ extension OCKHealthKitPassthroughStore {
         // The getCarePlanUUID's method is a type method because it can be called alone and does not need an instance of the OCKStore to be created in order to be used.
 
         let carePlanUUIDs = try await OCKStore.getCarePlanUUIDs()
+        /*
         var steps = OCKHealthKitTask(
             id: TaskID.steps,
             title: "Steps",
@@ -90,6 +91,29 @@ extension OCKHealthKitPassthroughStore {
         steps.asset = "figure.walk"
         steps.card = .numericProgress
         // uncomment to get sample steps card back
-        try await addTasksIfNotPresent([steps])
+         */
+
+        var bodyMass = OCKHealthKitTask(id: TaskID.bodyMass,
+                                   title: "Body Mass",
+                                   carePlanUUID: carePlanUUIDs.first?.value,
+                                   schedule: schedule,
+                                   healthKitLinkage: OCKHealthKitLinkage(
+                                        quantityIdentifier: .bodyMass,
+                                        quantityType: .discrete,
+                                        unit: .pound()))
+        bodyMass.card = .featured
+
+        let heartRateUnit = HKUnit.count().unitDivided(by: HKUnit.minute())
+        var heartRate = OCKHealthKitTask(id: TaskID.heartRate,
+                                         title: "Heart Rate",
+                                         carePlanUUID: carePlanUUIDs.first?.value,
+                                         schedule: schedule,
+                                         healthKitLinkage: OCKHealthKitLinkage(
+                                            quantityIdentifier: .heartRate,
+                                            quantityType: .discrete,
+                                            unit: heartRateUnit))
+        heartRate.card = .grid
+
+        try await addTasksIfNotPresent([bodyMass, heartRate])
     }
 }

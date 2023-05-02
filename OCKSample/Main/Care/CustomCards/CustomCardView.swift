@@ -16,12 +16,25 @@ struct CustomCardView: View {
 
     var body: some View {
         CardView {
-            VStack(alignment: .leading,
-                   spacing: style.dimension.directionalInsets1.top) {
-                /*
-                 // Example of custom content that looks something like Header.
-                 TODOxxx: Remove this if you don't use it.
-                 VStack(alignment: .leading, spacing: style.dimension.directionalInsets1.top / 4.0) {
+
+            /*
+             // Example of custom content that looks something like Header.
+             TODOxxx: Remove this if you don't use it.
+             VStack(alignment: .leading, spacing: style.dimension.directionalInsets1.top / 4.0) {
+                Text(viewModel.taskEvents.firstEventTitle)
+                    .font(.headline)
+                    .fontWeight(.bold)
+                Text(viewModel.taskEvents.firstEventDetail ?? "")
+                    .font(.caption)
+                    .fontWeight(.medium)
+            }
+            .foregroundColor(Color.primary)
+            
+            VStack(alignment: .leading, spacing: style.dimension.directionalInsets1.top) {
+                HeaderView(title: Text(viewModel.taskEvents.firstEventTitle),
+                           detail: Text(viewModel.taskEvents.firstTaskInstructions ?? ""))
+                Divider()
+                HStack(alignment: .center, spacing: style.dimension.directionalInsets2.trailing) {
                     Text(viewModel.taskEvents.firstEventTitle)
                         .font(.headline)
                         .fontWeight(.bold)
@@ -29,11 +42,15 @@ struct CustomCardView: View {
                         .font(.caption)
                         .fontWeight(.medium)
                 }
-                .foregroundColor(Color.primary)
-                */
+           }
+           .foregroundColor(Color.primary)
+             */
+
+            VStack(alignment: .leading,
+                   spacing: style.dimension.directionalInsets1.top) {
                 // Can look through HeaderView for creating custom
                 HeaderView(title: Text(viewModel.taskEvents.firstEventTitle),
-                           detail: Text(viewModel.taskEvents.firstEventDetail ?? ""))
+                           detail: Text(viewModel.taskEvents.firstTaskInstructions ?? ""))
                 Divider()
                 HStack(alignment: .center,
                        spacing: style.dimension.directionalInsets2.trailing) {
@@ -52,7 +69,7 @@ struct CustomCardView: View {
                                 Image(systemName: "checkmark") // Can place any view type here
                                     .resizable()
                                     .padding()
-                                    .frame(width: 50, height: 50) // Change size to make larger/smaller
+                                    .frame(width: 40, height: 40) // Change size to make larger/smaller
                             }
                         }
                     Spacer()
@@ -66,7 +83,6 @@ struct CustomCardView: View {
                         .font(Font.title.weight(.bold))
                         .foregroundColor(.accentColor)
 
-                    Spacer()
                     Button(action: {
                         Task {
                             await viewModel.action(viewModel.value)
@@ -77,7 +93,7 @@ struct CustomCardView: View {
                             Image(systemName: "checkmark") // Can place any view type here
                                 .resizable()
                                 .padding()
-                                .frame(width: 50, height: 50) // Change size to make larger/smaller
+                                .frame(width: 40, height: 40) // Change size to make larger/smaller
                         }
                     }
 
@@ -89,6 +105,7 @@ struct CustomCardView: View {
             }
             .padding()
         }
+
         .onReceive(viewModel.$taskEvents) { taskEvents in
             /*
              DO NOT CHANGE THIS. The viewModel needs help

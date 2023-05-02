@@ -95,12 +95,6 @@ class CareKitTaskViewModel: ObservableObject {
                                             end: nil,
                                             targetValues: [],
                                             text: nil)
-        default:
-            return OCKSchedule.dailyAtTime(hour: 0,
-                                           minutes: 0,
-                                           start: Date(),
-                                           end: nil,
-                                           text: nil)
         }
     }
 

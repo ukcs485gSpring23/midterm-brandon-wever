@@ -125,19 +125,25 @@ enum CarePlanID: String, CaseIterable, Identifiable {
     var id: Self { self }
     case health // Add custom id's for your Care Plans, these are examples
     case checkIn
+    case weighIn
     case user
 }
 
 enum TaskID {
-    static let doxylamine = "doxylamine"
-    static let nausea = "nausea"
-    static let stretch = "stretch"
-    static let kegels = "kegels"
-    static let steps = "steps"
+    static let bodyMass = "body mass"
+    static let heartRate = "heart rate"
     static let repetition = "repetition"
 
+    static let warmUp = "warm up"
+    static let benchPress = "bench press"
+    static let core = "core"
+    static let completedExercise = "completed exercise"
+    static let weighInSurvey = "weigh in survey"
+    static let postWorkoutSurvey = "post workout survey"
+
     static var ordered: [String] {
-        [Self.steps, Self.repetition, Self.doxylamine, Self.kegels, Self.stretch, Self.nausea]
+        [Self.weighInSurvey, Self.bodyMass, Self.heartRate, Self.repetition, Self.core, Self.benchPress,
+         Self.warmUp, Self.completedExercise, Self.postWorkoutSurvey]
     }
 }
 

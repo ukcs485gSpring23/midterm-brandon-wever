@@ -109,6 +109,10 @@
 		A083ABCE29DF6D850043BD1C /* MyContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A083ABCD29DF6D850043BD1C /* MyContactViewController.swift */; };
 		A086119329CBAD5F007726D4 /* OCKHealthKitTask+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = A086119229CBAD5F007726D4 /* OCKHealthKitTask+Custom.swift */; };
 		A086119429CBAD5F007726D4 /* OCKHealthKitTask+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = A086119229CBAD5F007726D4 /* OCKHealthKitTask+Custom.swift */; };
+		A0B069FE2A01857100B85526 /* WeighIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B069FD2A01857100B85526 /* WeighIn.swift */; };
+		A0B069FF2A01857100B85526 /* WeighIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B069FD2A01857100B85526 /* WeighIn.swift */; };
+		A0B06A012A01B5BF00B85526 /* PostWorkoutRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B06A002A01B5BF00B85526 /* PostWorkoutRating.swift */; };
+		A0B06A022A01B5BF00B85526 /* PostWorkoutRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B06A002A01B5BF00B85526 /* PostWorkoutRating.swift */; };
 		A0BC000629CA3FAA004C8D0D /* CareKitUtilities in Frameworks */ = {isa = PBXBuildFile; productRef = A0BC000529CA3FAA004C8D0D /* CareKitUtilities */; };
 		A0BC000829CA489B004C8D0D /* OCKTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BC000729CA489B004C8D0D /* OCKTask.swift */; };
 		A0BC000929CA489B004C8D0D /* OCKTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BC000729CA489B004C8D0D /* OCKTask.swift */; };
@@ -253,6 +257,8 @@
 		A083ABCB29DF6D4B0043BD1C /* MyContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyContactView.swift; sourceTree = "<group>"; };
 		A083ABCD29DF6D850043BD1C /* MyContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyContactViewController.swift; sourceTree = "<group>"; };
 		A086119229CBAD5F007726D4 /* OCKHealthKitTask+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OCKHealthKitTask+Custom.swift"; sourceTree = "<group>"; };
+		A0B069FD2A01857100B85526 /* WeighIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeighIn.swift; sourceTree = "<group>"; };
+		A0B06A002A01B5BF00B85526 /* PostWorkoutRating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostWorkoutRating.swift; sourceTree = "<group>"; };
 		A0BC000729CA489B004C8D0D /* OCKTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OCKTask.swift; sourceTree = "<group>"; };
 		A0BC000B29CA4D4C004C8D0D /* CareKitTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareKitTaskView.swift; sourceTree = "<group>"; };
 		A0BC000D29CA4D9C004C8D0D /* CareKitTaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CareKitTaskViewModel.swift; sourceTree = "<group>"; };
@@ -333,8 +339,8 @@
 			children = (
 				E7C37848228F887800E982D8 /* TipView.swift */,
 				A0E215AD29EF3811003885CE /* SurveyViewSynchronizer.swift */,
-				A0C8DAD72A017586002975D4 /* CardViewModel.swift */,
 				A0C8DAD92A0175BD002975D4 /* CustomCardView.swift */,
+				A0C8DAD72A017586002975D4 /* CardViewModel.swift */,
 				A0C8DADB2A0175EE002975D4 /* CustomCardViewModel.swift */,
 				A0C8DADD2A017621002975D4 /* CustomFeaturedContentView.swift */,
 			);
@@ -366,8 +372,8 @@
 				70308878258272CD00FFABB6 /* Care */,
 				7030887D258272F400FFABB6 /* Contact */,
 				7030887E2582731300FFABB6 /* Login */,
-				70221F2728D7809800971195 /* MainTabView.swift */,
 				7036E4D2256EBE35006E9A3C /* MainView.swift */,
+				70221F2728D7809800971195 /* MainTabView.swift */,
 				7030887C258272E700FFABB6 /* Profile */,
 				91693819271B64CB00A634ED /* Stylers */,
 				A068518529E897CF00B06A3D /* Surveys */,
@@ -569,6 +575,8 @@
 				A068518629E8981400B06A3D /* Surveyable.swift */,
 				A0E215AF29EF3B66003885CE /* CheckIn.swift */,
 				A0F7D5A629F0976E005D8ABE /* RangeOfMotion.swift */,
+				A0B069FD2A01857100B85526 /* WeighIn.swift */,
+				A0B06A002A01B5BF00B85526 /* PostWorkoutRating.swift */,
 			);
 			path = Surveys;
 			sourceTree = "<group>";
@@ -847,6 +855,7 @@
 				A0BC000929CA489B004C8D0D /* OCKTask.swift in Sources */,
 				A005EFDE29B914DB00B6EDBF /* AnimationStyle.swift in Sources */,
 				918FDEB8271B49060045A0EF /* Logger.swift in Sources */,
+				A0B069FF2A01857100B85526 /* WeighIn.swift in Sources */,
 				A068518B29E8987300B06A3D /* Survey.swift in Sources */,
 				91AD923B24A4C42D00925D4D /* CareView.swift in Sources */,
 				A086119429CBAD5F007726D4 /* OCKHealthKitTask+Custom.swift in Sources */,
@@ -878,6 +887,7 @@
 				70CF66E528E1E74C00FAE977 /* TintColorFlipKey.swift in Sources */,
 				70F03A9C27860A2000E5AFB4 /* OCKStore.swift in Sources */,
 				70C0D474279BA492003DA141 /* Utility.swift in Sources */,
+				A0B06A022A01B5BF00B85526 /* PostWorkoutRating.swift in Sources */,
 				A005EFE129B9170000B6EDBF /* DimensionStyle.swift in Sources */,
 				91AD923D24A4C42D00925D4D /* AppDelegate.swift in Sources */,
 				91AD924124A4C42D00925D4D /* NotificationView.swift in Sources */,
@@ -899,6 +909,7 @@
 				A068519229E89B4F00B06A3D /* Consent.swift in Sources */,
 				7036E64025717F85006E9A3C /* Constants.swift in Sources */,
 				A0E215AE29EF3811003885CE /* SurveyViewSynchronizer.swift in Sources */,
+				A0B069FE2A01857100B85526 /* WeighIn.swift in Sources */,
 				A086119329CBAD5F007726D4 /* OCKHealthKitTask+Custom.swift in Sources */,
 				7036E4CE256E9A0C006E9A3C /* ContactView.swift in Sources */,
 				A083ABCE29DF6D850043BD1C /* MyContactViewController.swift in Sources */,
@@ -945,6 +956,7 @@
 				A0C8DAD82A017586002975D4 /* CardViewModel.swift in Sources */,
 				E7C37849228F887800E982D8 /* TipView.swift in Sources */,
 				70077597252228E900EC0EDA /* User.swift in Sources */,
+				A0B06A012A01B5BF00B85526 /* PostWorkoutRating.swift in Sources */,
 				7036E4C9256E1A6F006E9A3C /* ProfileView.swift in Sources */,
 				7083A856279CA40A00B3832E /* PCKUtility.swift in Sources */,
 				70F921AE27CABE7700368CEC /* RemoteSessionDelegate.swift in Sources */,

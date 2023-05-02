@@ -160,9 +160,8 @@ class CareViewController: OCKDailyPageViewController {
                     let tipTitle = "Benefits of exercising"
                     // let tipText = "Learn how activity can promote a healthy pregnancy."
                     // TODOxxx: 5 - Need to use correct initializer instead of setting properties
-                    let customFeaturedView = CustomFeaturedContentView()
                     // swiftlint:disable:next line_length
-                    customFeaturedView.url = URL(string: "https://www.uky.edu/hr/work-life-and-well-being/physical-activity")
+                    let customFeaturedView = CustomFeaturedContentView.init(url: "https://www.uky.edu/hr/work-life-and-well-being/physical-activity")
                     customFeaturedView.imageView.image = UIImage(named: "exercise.jpg")
                     customFeaturedView.label.text = tipTitle
                     customFeaturedView.label.textColor = .white
