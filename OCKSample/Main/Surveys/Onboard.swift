@@ -120,7 +120,7 @@ extension Onboard {
         // TODOxx: Set these to HealthKit info you want to display
         // by default.
         let healthKitTypesToWrite: Set<HKSampleType> = [
-            .quantityType(forIdentifier: .bodyMassIndex)!,
+            .quantityType(forIdentifier: .bodyMass)!,
             .quantityType(forIdentifier: .activeEnergyBurned)!,
             .workoutType()
         ]
@@ -129,9 +129,8 @@ extension Onboard {
             .characteristicType(forIdentifier: .dateOfBirth)!,
             .workoutType(),
             .quantityType(forIdentifier: .appleStandTime)!,
-            .quantityType(forIdentifier: .appleExerciseTime)!,
             .quantityType(forIdentifier: .heartRate)!,
-            .quantityType(forIdentifier: .bodyMassIndex)!,
+            .quantityType(forIdentifier: .bodyMass)!,
             .quantityType(forIdentifier: .stepCount)!
         ]
 

@@ -137,11 +137,22 @@ extension OCKStore {
         warmup.instructions = "Do some light cardio for a couple of minutes to increase your body's bloodflow"
         warmup.card = .instruction
         warmup.impactsAdherence = true
+        warmup.asset = "figure.walk"
+
+        let benchSchedule = OCKSchedule(composing: [
+            OCKScheduleElement(start: Calendar.current.startOfDay(for: Date()),
+                               end: nil,
+                               interval: DateComponents(hour: 1)),
+
+            OCKScheduleElement(start: Calendar.current.startOfDay(for: Date()),
+                               end: nil,
+                               interval: DateComponents(hour: 4))
+        ])
 
         var benchPress = OCKTask(id: TaskID.benchPress,
                                  title: "Bench Press",
                                  carePlanUUID: carePlanUUID,
-                                 schedule: schedule)
+                                 schedule: benchSchedule)
         benchPress.instructions = "Perform 10 repititions of bench press with a reasonable weight"
         benchPress.card = .simple
         benchPress.impactsAdherence = true
@@ -152,6 +163,7 @@ extension OCKStore {
                            schedule: schedule)
         core.instructions = "Do core exercises at the following times and mark them complete."
         core.card = .checklist
+        core.asset = "checkmark"
 
         let completedSchedule = OCKSchedule(composing: [
         OCKScheduleElement(start: beforeBreakfast,
@@ -167,6 +179,7 @@ extension OCKStore {
         completedExercise.instructions = "Tap the button to log everytime you have completed an exercise"
         completedExercise.card = .button
         completedExercise.impactsAdherence = false
+        completedExercise.asset = "person.fill.checkmark"
 
          var repetition = OCKTask(id: TaskID.repetition,
                                   title: "Track your Bench",

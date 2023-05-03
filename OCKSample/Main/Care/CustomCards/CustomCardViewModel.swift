@@ -22,13 +22,12 @@ class CustomCardViewModel: CardViewModel {
         return formatter
     }()
 
-    /// This value can be used directly in Text() views.
-    var valueAsDouble: Double {
+    var valueAsInt: Int {
         get {
-            guard let doubleValue = value?.doubleValue else {
-                return 0.0
+            guard let intValue = value?.integerValue else {
+                return 0
             }
-            return doubleValue
+            return intValue
         }
         set {
             value = OCKOutcomeValue(newValue)

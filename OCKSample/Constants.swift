@@ -132,7 +132,7 @@ enum CarePlanID: String, CaseIterable, Identifiable {
 
 enum TaskID {
     static let bodyMass = "body mass"
-    static let exerciseTime = "exercise time"
+    static let height = "height"
     static let repetition = "repetition"
     static let chatgtp = "chatGTP"
     static let warmUp = "warm up"
@@ -143,7 +143,7 @@ enum TaskID {
     static let postWorkoutSurvey = "post workout survey"
 
     static var ordered: [String] {
-        [Self.weighInSurvey, Self.bodyMass, Self.exerciseTime, Self.repetition, Self.core, Self.benchPress,
+        [Self.weighInSurvey, Self.bodyMass, Self.height, Self.repetition, Self.core, Self.benchPress,
          Self.warmUp, Self.completedExercise, Self.postWorkoutSurvey]
     }
 }

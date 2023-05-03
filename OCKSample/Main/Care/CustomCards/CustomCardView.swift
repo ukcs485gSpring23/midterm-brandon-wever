@@ -47,8 +47,8 @@ struct CustomCardView: View {
 
                     Text("Input: ")
                         .font(Font.headline)
-                    TextField("0.0",
-                              value: $viewModel.valueAsDouble,
+                    TextField("0",
+                              value: $viewModel.valueAsInt,
                               formatter: viewModel.amountFormatter)
                         .keyboardType(.decimalPad)
                         .font(Font.title.weight(.bold))

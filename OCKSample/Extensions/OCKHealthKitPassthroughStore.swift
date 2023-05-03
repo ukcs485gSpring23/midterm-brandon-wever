@@ -101,18 +101,18 @@ extension OCKHealthKitPassthroughStore {
                                         quantityIdentifier: .bodyMass,
                                         quantityType: .discrete,
                                         unit: .pound()))
-        bodyMass.card = .featured
+        bodyMass.card = .labeledValue
 
-        var exerciseTime = OCKHealthKitTask(id: TaskID.exerciseTime,
-                                            title: "Exercise Time",
-                                            carePlanUUID: carePlanUUIDs.first?.value,
-                                            schedule: schedule,
-                                            healthKitLinkage: OCKHealthKitLinkage(
-                                                quantityIdentifier: .appleExerciseTime,
-                                                quantityType: .discrete,
-                                                unit: .minute()))
-        exerciseTime.card = .featured
+        var height = OCKHealthKitTask(id: TaskID.height,
+                                      title: "Height",
+                                      carePlanUUID: carePlanUUIDs.first?.value,
+                                      schedule: schedule,
+                                      healthKitLinkage: OCKHealthKitLinkage(
+                                        quantityIdentifier: .height,
+                                        quantityType: .discrete,
+                                        unit: .inch()))
+        height.card = .labeledValue
 
-        try await addTasksIfNotPresent([bodyMass, exerciseTime])
+        try await addTasksIfNotPresent([bodyMass, height])
     }
 }

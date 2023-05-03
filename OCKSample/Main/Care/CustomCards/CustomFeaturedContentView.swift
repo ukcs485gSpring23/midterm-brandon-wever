@@ -20,6 +20,7 @@ class CustomFeaturedContentView: OCKFeaturedContentView {
         super.init(imageOverlayStyle: imageOverlayStyle)
 
         // TODOxxx: 1 - Need to become a "delegate" so we know when view is tapped.
+        // self.delegate = self
     }
 
     /*
@@ -32,6 +33,7 @@ class CustomFeaturedContentView: OCKFeaturedContentView {
         // TODOxxx: 2 - Need to call the designated initializer
 
         // TODOxxx: 3 - Need to turn the url string into a real URL using URL(string: String)
+        // var url = URL(string: url)
     }
 }
 
