@@ -103,17 +103,16 @@ extension OCKHealthKitPassthroughStore {
                                         unit: .pound()))
         bodyMass.card = .featured
 
-        let heartRateUnit = HKUnit.count().unitDivided(by: HKUnit.minute())
-        var heartRate = OCKHealthKitTask(id: TaskID.heartRate,
-                                         title: "Heart Rate",
-                                         carePlanUUID: carePlanUUIDs.first?.value,
-                                         schedule: schedule,
-                                         healthKitLinkage: OCKHealthKitLinkage(
-                                            quantityIdentifier: .heartRate,
-                                            quantityType: .discrete,
-                                            unit: heartRateUnit))
-        heartRate.card = .grid
+        var exerciseTime = OCKHealthKitTask(id: TaskID.exerciseTime,
+                                            title: "Exercise Time",
+                                            carePlanUUID: carePlanUUIDs.first?.value,
+                                            schedule: schedule,
+                                            healthKitLinkage: OCKHealthKitLinkage(
+                                                quantityIdentifier: .appleExerciseTime,
+                                                quantityType: .discrete,
+                                                unit: .minute()))
+        exerciseTime.card = .featured
 
-        try await addTasksIfNotPresent([bodyMass, heartRate])
+        try await addTasksIfNotPresent([bodyMass, exerciseTime])
     }
 }

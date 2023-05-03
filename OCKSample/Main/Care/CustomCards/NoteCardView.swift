@@ -10,13 +10,12 @@ import SwiftUI
 import CareKitUI
 import CareKitStore
 
-struct CustomCardView: View {
+struct NoteCardView: View {
     @Environment(\.careKitStyle) var style
-    @StateObject var viewModel: CustomCardViewModel
+    @StateObject var viewModel: NoteCardViewModel
 
     var body: some View {
         CardView {
-
             VStack(alignment: .leading,
                    spacing: style.dimension.directionalInsets1.top) {
                 // Can look through HeaderView for creating custom
@@ -26,10 +25,6 @@ struct CustomCardView: View {
                 HStack(alignment: .center,
                        spacing: style.dimension.directionalInsets2.trailing) {
 
-                    /*
-                     // Example of custom content.
-                     TODOxxx: Remove all that you are not using.
-                     */
                     Button(action: {
                         Task {
                             await viewModel.action(viewModel.value)
@@ -43,17 +38,14 @@ struct CustomCardView: View {
                                     .frame(width: 40, height: 40) // Change size to make larger/smaller
                             }
                         }
-                    Spacer()
-
-                    Text("Input: ")
+                    Text("✏️: ")
                         .font(Font.headline)
-                    TextField("0.0",
-                              value: $viewModel.valueAsDouble,
-                              formatter: viewModel.amountFormatter)
-                        .keyboardType(.decimalPad)
-                        .font(Font.title.weight(.bold))
+                    TextField("Leave your note here",
+                              text: $viewModel.valueAsString)
+                              // formatter: viewModel.amountFormatter)
+                    .keyboardType(.default)
+                        .font(Font.body)
                         .foregroundColor(.accentColor)
-
                 }
             }
             .padding()
@@ -78,9 +70,9 @@ struct CustomCardView: View {
     }
 }
 
-struct CustomCardView_Previews: PreviewProvider {
+struct NoteCardView_Previews: PreviewProvider {
     static var previews: some View {
-        CustomCardView(viewModel: .init(storeManager: .init(wrapping: OCKStore(name: Constants.noCareStoreName,
+        NoteCardView(viewModel: .init(storeManager: .init(wrapping: OCKStore(name: Constants.noCareStoreName,
                                                                                type: .inMemory))))
     }
 }

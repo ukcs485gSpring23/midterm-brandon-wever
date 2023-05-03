@@ -99,6 +99,7 @@ enum CareKitCard: String, CaseIterable, Identifiable {
     case simple = "Simple"
     case survey = "Survey"
     case custom = "Custom"
+    case note = "Note"
 }
 
 enum SchedulePossibilities: String, CaseIterable, Identifiable {
@@ -131,7 +132,7 @@ enum CarePlanID: String, CaseIterable, Identifiable {
 
 enum TaskID {
     static let bodyMass = "body mass"
-    static let heartRate = "heart rate"
+    static let exerciseTime = "exercise time"
     static let repetition = "repetition"
 
     static let warmUp = "warm up"
@@ -142,7 +143,7 @@ enum TaskID {
     static let postWorkoutSurvey = "post workout survey"
 
     static var ordered: [String] {
-        [Self.weighInSurvey, Self.bodyMass, Self.heartRate, Self.repetition, Self.core, Self.benchPress,
+        [Self.weighInSurvey, Self.bodyMass, Self.exerciseTime, Self.repetition, Self.core, Self.benchPress,
          Self.warmUp, Self.completedExercise, Self.postWorkoutSurvey]
     }
 }

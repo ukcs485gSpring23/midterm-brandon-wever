@@ -103,6 +103,8 @@
 		A068518E29E898C600B06A3D /* Onboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A068518C29E898C600B06A3D /* Onboard.swift */; };
 		A068519229E89B4F00B06A3D /* Consent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A068519129E89B4F00B06A3D /* Consent.swift */; };
 		A068519329E89B4F00B06A3D /* Consent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A068519129E89B4F00B06A3D /* Consent.swift */; };
+		A08257012A01ED1700F882D1 /* NoteCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08257002A01ED1700F882D1 /* NoteCardView.swift */; };
+		A08257032A01ED3F00F882D1 /* NoteCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08257022A01ED3F00F882D1 /* NoteCardViewModel.swift */; };
 		A083ABC729DF675F0043BD1C /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A083ABC629DF675F0043BD1C /* ImagePicker.swift */; };
 		A083ABCA29DF67E20043BD1C /* ProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A083ABC929DF67E20043BD1C /* ProfileImageView.swift */; };
 		A083ABCC29DF6D4B0043BD1C /* MyContactView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A083ABCB29DF6D4B0043BD1C /* MyContactView.swift */; };
@@ -252,6 +254,8 @@
 		A068518929E8987300B06A3D /* Survey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Survey.swift; sourceTree = "<group>"; };
 		A068518C29E898C600B06A3D /* Onboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboard.swift; sourceTree = "<group>"; };
 		A068519129E89B4F00B06A3D /* Consent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Consent.swift; sourceTree = "<group>"; };
+		A08257002A01ED1700F882D1 /* NoteCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteCardView.swift; sourceTree = "<group>"; };
+		A08257022A01ED3F00F882D1 /* NoteCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteCardViewModel.swift; sourceTree = "<group>"; };
 		A083ABC629DF675F0043BD1C /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		A083ABC929DF67E20043BD1C /* ProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageView.swift; sourceTree = "<group>"; };
 		A083ABCB29DF6D4B0043BD1C /* MyContactView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyContactView.swift; sourceTree = "<group>"; };
@@ -343,6 +347,8 @@
 				A0C8DAD72A017586002975D4 /* CardViewModel.swift */,
 				A0C8DADB2A0175EE002975D4 /* CustomCardViewModel.swift */,
 				A0C8DADD2A017621002975D4 /* CustomFeaturedContentView.swift */,
+				A08257002A01ED1700F882D1 /* NoteCardView.swift */,
+				A08257022A01ED3F00F882D1 /* NoteCardViewModel.swift */,
 			);
 			path = CustomCards;
 			sourceTree = "<group>";
@@ -910,6 +916,7 @@
 				7036E64025717F85006E9A3C /* Constants.swift in Sources */,
 				A0E215AE29EF3811003885CE /* SurveyViewSynchronizer.swift in Sources */,
 				A0B069FE2A01857100B85526 /* WeighIn.swift in Sources */,
+				A08257032A01ED3F00F882D1 /* NoteCardViewModel.swift in Sources */,
 				A086119329CBAD5F007726D4 /* OCKHealthKitTask+Custom.swift in Sources */,
 				7036E4CE256E9A0C006E9A3C /* ContactView.swift in Sources */,
 				A083ABCE29DF6D850043BD1C /* MyContactViewController.swift in Sources */,
@@ -940,6 +947,7 @@
 				918FDEB7271B41FF0045A0EF /* Logger.swift in Sources */,
 				70221F2A28D7BE0600971195 /* AppDelegate+ParseRemoteDelegate.swift in Sources */,
 				7036E4D3256EBE35006E9A3C /* MainView.swift in Sources */,
+				A08257012A01ED1700F882D1 /* NoteCardView.swift in Sources */,
 				918FDEC5271B4EA70045A0EF /* StoreManagerKey.swift in Sources */,
 				A005EFE029B9170000B6EDBF /* DimensionStyle.swift in Sources */,
 				A0C8DADE2A017621002975D4 /* CustomFeaturedContentView.swift in Sources */,

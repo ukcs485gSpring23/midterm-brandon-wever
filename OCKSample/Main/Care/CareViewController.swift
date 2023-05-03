@@ -289,6 +289,12 @@ class CareViewController: OCKDailyPageViewController {
                         surveyCard.surveyDelegate = self
                         return [surveyCard]
 
+            case .note:
+                let viewModel = NoteCardViewModel(task: task,
+                                                  eventQuery: .init(for: Date()),
+                                                  storeManager: self.storeManager)
+                let noteCard = NoteCardView(viewModel: viewModel)
+                return [noteCard.formattedHostingController()]
             default:
                 // Check if a healthKit task
                 guard task is OCKHealthKitTask else {
