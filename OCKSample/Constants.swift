@@ -98,7 +98,7 @@ enum CareKitCard: String, CaseIterable, Identifiable {
     case numericProgress = "Numeric Progress"
     case simple = "Simple"
     case survey = "Survey"
-    case custom = "Custom"
+    case customWeight = "CustomWeight"
     case note = "Note"
 }
 
@@ -117,8 +117,7 @@ enum SchedulePossibilities: String, CaseIterable, Identifiable {
 
 enum HealthKitPossibilities: String, CaseIterable, Identifiable {
     var id: Self { self }
-    case heartRateTracker = "Heart Rate Tracker"
-    case stepTracker = "Step Tracker"
+    case heightTracker = "Height Tracker"
     case weightTracker = "Weight Tracker"
 }
 
@@ -143,8 +142,8 @@ enum TaskID {
     static let postWorkoutSurvey = "post workout survey"
 
     static var ordered: [String] {
-        [Self.weighInSurvey, Self.bodyMass, Self.height, Self.repetition, Self.core, Self.benchPress,
-         Self.warmUp, Self.completedExercise, Self.postWorkoutSurvey]
+        // swiftlint:disable:next line_length
+        [Self.weighInSurvey, Self.postWorkoutSurvey, Self.bodyMass, Self.height, Self.repetition, Self.core, Self.benchPress, Self.warmUp, Self.completedExercise]
     }
 }
 

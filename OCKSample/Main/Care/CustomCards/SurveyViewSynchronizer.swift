@@ -45,8 +45,8 @@ final class SurveyViewSynchronizer: OCKSurveyTaskViewSynchronizer {
                     let calories = event.answer(kind: WeighIn.caloriesItemIdentifier)
 
                     view.instructionsLabel.text = """
-                    Weight: \(Double(weight)) kilograms
-                    Calories: \(Int(calories)) calories
+                    Weight: \((Double(weight)*2.20462).rounded(.up)) pounds
+                    Calories: \(Int(calories)) calories today
                     """
                 case .postWorkoutRating:
                     let difficulty = event.answer(kind: PostWorkoutRating.difficultyItemIdentifier)

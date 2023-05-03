@@ -20,7 +20,7 @@ class CustomFeaturedContentView: OCKFeaturedContentView {
         super.init(imageOverlayStyle: imageOverlayStyle)
 
         // TODOxxx: 1 - Need to become a "delegate" so we know when view is tapped.
-        // self.delegate = self
+        self.delegate = self
     }
 
     /*
@@ -28,12 +28,17 @@ class CustomFeaturedContentView: OCKFeaturedContentView {
      The initialize should set all of the respective properties.
      */
     // A convenience initializer to make it easier to use our custom featured content
-    convenience init(url: String, imageOverlayStyle: UIUserInterfaceStyle = .unspecified) {
+    // swiftlint:disable:next line_length
+    convenience init(url: String, imageOverlayStyle: UIUserInterfaceStyle = .unspecified, image: UIImage?, tipTitle: String, color: UIColor) {
         self.init(imageOverlayStyle: imageOverlayStyle)
         // TODOxxx: 2 - Need to call the designated initializer
 
         // TODOxxx: 3 - Need to turn the url string into a real URL using URL(string: String)
-        // var url = URL(string: url)
+        self.url = URL(string: url)
+        self.imageView.image = image
+        self.label.text = tipTitle
+        self.label.textColor = color
+
     }
 }
 

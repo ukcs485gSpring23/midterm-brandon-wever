@@ -75,12 +75,7 @@ class InsightsViewController: OCKListViewController {
         query.excludesTasksWithNoEvents = true
         do {
             let tasks = try await storeManager.store.fetchAnyTasks(query: query)
-            var taskIDs = TaskID.ordered
-            taskIDs.append(WeighIn().identifier())
-            taskIDs.append(PostWorkoutRating().identifier())
-            let orderedTasks = taskIDs.compactMap { orderedTaskID in
-                tasks.first(where: { $0.id == orderedTaskID }) }
-            return orderedTasks
+            return tasks.filter { $0.id != Onboard.identifier() }
         } catch {
             Logger.insights.error("\(error.localizedDescription, privacy: .public)")
             return []
@@ -112,11 +107,6 @@ class InsightsViewController: OCKListViewController {
         let survey = CheckIn() // Only used for example.
         let surveyTaskID = survey.identifier() // Only used for example.
 
-        let weightSurvey = WeighIn()
-        let weightSurveyTaskID = weightSurvey.identifier()
-
-        let postSurvey = PostWorkoutRating()
-        let postSurveyTaskID = postSurvey.identifier()
         switch task.id {
         case surveyTaskID:
 
@@ -160,11 +150,11 @@ class InsightsViewController: OCKListViewController {
 
             return [insightsCard]
 
-        case weightSurveyTaskID:
+        case WeighIn().identifier():
             let weightGradientEnd = TintColorKey.defaultValue
 
             let meanDataSeries = OCKDataSeriesConfiguration(
-                taskID: weightSurveyTaskID,
+                taskID: WeighIn().identifier(),
                 legendTitle: "Mean",
                 gradientStartColor: weightGradientEnd,
                 gradientEndColor: weightGradientEnd,
@@ -172,7 +162,7 @@ class InsightsViewController: OCKListViewController {
                 eventAggregator: .aggregatorMean(WeighIn.weightItemIdentifier))
 
             let medianDataSeries = OCKDataSeriesConfiguration(
-                taskID: weightSurveyTaskID,
+                taskID: WeighIn().identifier(),
                 legendTitle: "Median",
                 gradientStartColor: .systemGray2,
                 gradientEndColor: .systemGray,
@@ -191,14 +181,14 @@ class InsightsViewController: OCKListViewController {
 
             return [weightInsightsCard]
 
-        case postSurveyTaskID:
+        case PostWorkoutRating().identifier():
             var cards = [UIViewController]()
             // dynamic gradient colors
             let difficultyGradientEnd = TintColorKey.defaultValue
 
             // Create a plot comparing nausea to medication adherence.
             let difficultyDataSeries = OCKDataSeriesConfiguration(
-                taskID: postSurveyTaskID,
+                taskID: PostWorkoutRating().identifier(),
                 legendTitle: "Difficulty",
                 gradientStartColor: difficultyGradientEnd,
                 gradientEndColor: difficultyGradientEnd,
@@ -206,7 +196,7 @@ class InsightsViewController: OCKListViewController {
                 eventAggregator: .aggregatorMean(PostWorkoutRating.difficultyItemIdentifier))
 
             let effortDataSeries = OCKDataSeriesConfiguration(
-                taskID: postSurveyTaskID,
+                taskID: PostWorkoutRating().identifier(),
                 legendTitle: "Effort",
                 gradientStartColor: .systemGray2,
                 gradientEndColor: .systemGray,
@@ -223,6 +213,31 @@ class InsightsViewController: OCKListViewController {
             insightsCard.chartView.headerView.detailLabel.text = "This Week"
             insightsCard.chartView.headerView.accessibilityLabel = "Workout Difficulty This Week"
             cards.append(insightsCard)
+
+            return cards
+
+        case TaskID.completedExercise:
+            var cards = [UIViewController]()
+            let completedExerciseGradient = TintColorKey.defaultValue
+
+            let completedExerciseDataSeries = OCKDataSeriesConfiguration(
+                taskID: TaskID.completedExercise,
+                legendTitle: "Completed Exercises",
+                gradientStartColor: completedExerciseGradient,
+                gradientEndColor: completedExerciseGradient,
+                markerSize: 5,
+                eventAggregator: OCKEventAggregator.countOutcomeValues)
+
+            let insightsCard = OCKCartesianChartViewController(
+                            plotType: .scatter,
+                            selectedDate: date,
+                            configurations: [completedExerciseDataSeries],
+                            storeManager: self.storeManager)
+
+            insightsCard.chartView.headerView.titleLabel.text = "Exercises Completed"
+                insightsCard.chartView.headerView.detailLabel.text = "This Week"
+                insightsCard.chartView.headerView.accessibilityLabel = "Exercises Completed, This Week"
+                cards.append(insightsCard)
 
             return cards
 

@@ -131,7 +131,8 @@ extension Onboard {
             .quantityType(forIdentifier: .appleStandTime)!,
             .quantityType(forIdentifier: .heartRate)!,
             .quantityType(forIdentifier: .bodyMass)!,
-            .quantityType(forIdentifier: .stepCount)!
+            .quantityType(forIdentifier: .stepCount)!,
+            .quantityType(forIdentifier: .height)!
         ]
 
         let healthKitPermissionType = ORKHealthKitPermissionType(

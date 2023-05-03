@@ -157,14 +157,13 @@ class CareViewController: OCKDailyPageViewController {
             if isCurrentDay {
                 if Calendar.current.isDate(date, inSameDayAs: Date()) {
                     // Add a non-CareKit view into the list
-                    let tipTitle = "Benefits of exercising"
-                    // let tipText = "Learn how activity can promote a healthy pregnancy."
+                    let tipTitle = "Your Mountain Today"
                     // TODOxxx: 5 - Need to use correct initializer instead of setting properties
                     // swiftlint:disable:next line_length
-                    let customFeaturedView = CustomFeaturedContentView.init(url: "https://www.uky.edu/hr/work-life-and-well-being/physical-activity")
-                    customFeaturedView.imageView.image = UIImage(named: "exercise.jpg")
-                    customFeaturedView.label.text = tipTitle
-                    customFeaturedView.label.textColor = .white
+                    let customFeaturedView = CustomFeaturedContentView.init(url: "https://www.muscleandfitness.com/workouts/workout-tips/25-expert-tips-improve-workout/",
+                                                                            // swiftlint:disable:next line_length
+                                                                            image: UIImage(named: "brightSnowMountain.jpg"), tipTitle: tipTitle,
+                                                                            color: #colorLiteral(red: 0.9998105168, green: 0.9952459931, blue: 0.8368335366, alpha: 1))
                     customFeaturedView.customStyle = CustomStylerKey.defaultValue
                     listViewController.appendView(customFeaturedView, animated: false)
                 }
@@ -215,7 +214,7 @@ class CareViewController: OCKDailyPageViewController {
                 return [OCKInstructionsTaskViewController(task: task,
                                                           eventQuery: .init(for: date),
                                                           storeManager: self.storeManager)]
-            case .custom:
+            case .customWeight:
                 /*
                  TODOxxx: Example of showing how to use your custom card. This
                  should be placed correctly for the final to receive credit.

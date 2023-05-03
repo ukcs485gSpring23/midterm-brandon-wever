@@ -33,7 +33,7 @@ struct WeighIn: Surveyable {
 extension WeighIn {
     func createSurvey() -> ORKTask {
 
-        let weightAnswerFormat = ORKAnswerFormat.weightAnswerFormat(with: .metric, numericPrecision: .default)
+        let weightAnswerFormat = ORKAnswerFormat.weightAnswerFormat(with: .USC, numericPrecision: .default)
 
         let weightItem = ORKFormItem(
             identifier: Self.weightItemIdentifier,

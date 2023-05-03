@@ -67,7 +67,7 @@ extension OCKStore {
 
         var query = OCKCarePlanQuery(for: Date())
         query.ids = [CarePlanID.health.rawValue,
-                         CarePlanID.checkIn.rawValue]
+                         CarePlanID.user.rawValue]
 
         let foundCarePlans = try await store.fetchCarePlans(query: query)
         // Populate the dictionary for all CarePlan's
@@ -188,7 +188,7 @@ extension OCKStore {
          repetition.impactsAdherence = false
          repetition.instructions = "Input your attempted bench press weight before you start."
          repetition.asset = "repeat.circle"
-         repetition.card = .custom
+         repetition.card = .customWeight
 
         var chatgtpLink = OCKTask(id: TaskID.chatgtp,
                                   title: "ChatGTP Link",
@@ -202,7 +202,7 @@ extension OCKStore {
 
         let carePlanUUIDs = try await Self.getCarePlanUUIDs()
         try await addOnboardingTask(carePlanUUIDs[.health])
-        try await addSurveyTasks(carePlanUUIDs[.checkIn])
+        try await addSurveyTasks(carePlanUUIDs[.user])
 
         var contact1 = OCKContact(id: "jane",
                                   givenName: "Jane",
@@ -288,6 +288,7 @@ extension OCKStore {
                 )
                 weighInTask.card = .survey
                 weighInTask.survey = .weighIn
+                weighInTask.asset = "scalemass.fill"
 
                 var postWorkoutRatingTask = OCKTask(id: PostWorkoutRating.identifier(),
                                                     title: "Post Workout Evaluation",
@@ -295,6 +296,7 @@ extension OCKStore {
                                                     schedule: checkInSchedule)
                 postWorkoutRatingTask.card = .survey
                 postWorkoutRatingTask.survey = .postWorkoutRating
+                postWorkoutRatingTask.asset = "list.bullet.clipboard.fill"
 
                 let thisMorning = Calendar.current.startOfDay(for: Date())
 
