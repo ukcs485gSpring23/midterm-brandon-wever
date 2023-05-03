@@ -134,7 +134,7 @@ enum TaskID {
     static let bodyMass = "body mass"
     static let exerciseTime = "exercise time"
     static let repetition = "repetition"
-
+    static let chatgtp = "chatGTP"
     static let warmUp = "warm up"
     static let benchPress = "bench press"
     static let core = "core"

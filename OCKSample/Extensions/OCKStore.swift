@@ -170,14 +170,22 @@ extension OCKStore {
 
          var repetition = OCKTask(id: TaskID.repetition,
                                   title: "Track your Bench",
-                                  carePlanUUID: nil,
+                                  carePlanUUID: carePlanUUID,
                                   schedule: schedule)
          repetition.impactsAdherence = false
          repetition.instructions = "Input your attempted bench press weight before you start."
          repetition.asset = "repeat.circle"
          repetition.card = .custom
 
-        try await addTasksIfNotPresent([warmup, benchPress, core, completedExercise, repetition])
+        var chatgtpLink = OCKTask(id: TaskID.chatgtp,
+                                  title: "ChatGTP Link",
+                                  carePlanUUID: carePlanUUID,
+                                  schedule: schedule)
+        chatgtpLink.card = .link
+        chatgtpLink.instructions = "Ask ChatGTP about your workout questions!"
+        chatgtpLink.impactsAdherence = false
+
+        try await addTasksIfNotPresent([chatgtpLink, warmup, benchPress, core, completedExercise, repetition])
 
         let carePlanUUIDs = try await Self.getCarePlanUUIDs()
         try await addOnboardingTask(carePlanUUIDs[.health])
