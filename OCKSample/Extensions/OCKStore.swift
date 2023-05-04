@@ -191,7 +191,7 @@ extension OCKStore {
          repetition.card = .customWeight
 
         var chatgtpLink = OCKTask(id: TaskID.chatgtp,
-                                  title: "ChatGTP Link",
+                                  title: "ChatGPT Link",
                                   carePlanUUID: carePlanUUID,
                                   schedule: schedule)
         chatgtpLink.card = .link
