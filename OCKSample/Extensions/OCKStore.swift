@@ -195,7 +195,7 @@ extension OCKStore {
                                   carePlanUUID: carePlanUUID,
                                   schedule: schedule)
         chatgtpLink.card = .link
-        chatgtpLink.instructions = "Ask ChatGTP about your workout questions!"
+        chatgtpLink.instructions = "Ask ChatGPT about your workout questions!"
         chatgtpLink.impactsAdherence = false
 
         try await addTasksIfNotPresent([chatgtpLink, warmup, benchPress, core, completedExercise, repetition])
