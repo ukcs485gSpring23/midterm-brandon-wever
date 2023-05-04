@@ -26,6 +26,7 @@ struct LoginView: View {
     @ObservedObject var viewModel: LoginViewModel
     @State var usersname = ""
     @State var password = ""
+    @State var email = ""
     @State var firstName: String = ""
     @State var lastName: String = ""
     @State var signupLoginSegmentValue = 0
@@ -33,16 +34,19 @@ struct LoginView: View {
     var body: some View {
         VStack {
             // Change the title to the name of your application
-            Text("CareKit Sample App")
+            Text("Alpine Fitness")
                 .font(.largeTitle)
-                .foregroundColor(.white)
+                .foregroundColor(Color(#colorLiteral(red: 0.1960784346, green: 0.3411764801, blue: 0.1019607857, alpha: 1)))
                 .padding()
+            Text("Climb your mountain.")
+                .font(.caption)
+                .foregroundColor(Color(#colorLiteral(red: 0.1960784346, green: 0.3411764801, blue: 0.1019607857, alpha: 1)))
             // Change this image to something that represents your application
-            Image("exercise.jpg")
+            Image("mountain.png")
                 .resizable()
-                .frame(width: 150, height: 150, alignment: .center)
-                .clipShape(Circle())
-                .overlay(Circle().stroke(Color(.white), lineWidth: 4))
+                .frame(width: 150, height: 150, alignment: .center).cornerRadius(25)
+                .clipShape(Rectangle())
+                // .overlay(Rectangle().stroke(Color(.white), lineWidth: 4))
                 .shadow(radius: 10)
                 .padding()
 
@@ -85,6 +89,13 @@ struct LoginView: View {
                         .background(.white)
                         .cornerRadius(20.0)
                         .shadow(radius: 10.0, x: 20, y: 10)
+
+                    TextField("Email", text: $email)
+                        .padding()
+                        .background(.white)
+                        .cornerRadius(20.0)
+                        .shadow(radius: 10.0, x: 20, y: 10)
+
                 default:
                     EmptyView()
                 }
@@ -102,6 +113,7 @@ struct LoginView: View {
                         await viewModel.signup(.patient,
                                                username: usersname,
                                                password: password,
+                                               email: email,
                                                firstName: firstName,
                                                lastName: lastName)
                     }
@@ -156,7 +168,7 @@ struct LoginView: View {
             }
             Spacer()
         }
-        .background(LinearGradient(gradient: Gradient(colors: [Color(tintColorFlip),
+        .background(LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.9998105168, green: 0.9952459931, blue: 0.8368335366, alpha: 1)),
                                                                Color(tintColor)]),
                                    startPoint: .top,
                                    endPoint: .bottom))

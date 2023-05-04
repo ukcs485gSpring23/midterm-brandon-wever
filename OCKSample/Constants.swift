@@ -74,25 +74,76 @@ enum Constants {
     static let requestSync = "requestSync"
     static let progressUpdate = "progressUpdate"
     static let finishedAskingForPermission = "finishedAskingForPermission"
-    static let completedFirstSyncAfterLogin = "completedFirstSyncAfterLogin"
+    static let shouldRefreshView = "shouldRefreshView"
     static let userLoggedIn = "userLoggedIn"
     static let storeInitialized = "storeInitialized"
     static let userTypeKey = "userType"
+    static let card = "card"
+    static let survey = "survey"
 }
 
 enum MainViewPath {
     case tabs
 }
 
+enum CareKitCard: String, CaseIterable, Identifiable {
+    var id: Self { self }
+    case button = "Button"
+    case checklist = "Checklist"
+    case featured = "Featured"
+    case grid = "Grid"
+    case instruction = "Instruction"
+    case labeledValue = "Labeled Value"
+    case link = "Link"
+    case numericProgress = "Numeric Progress"
+    case simple = "Simple"
+    case survey = "Survey"
+    case customWeight = "CustomWeight"
+    case note = "Note"
+}
+
+enum SchedulePossibilities: String, CaseIterable, Identifiable {
+    var id: Self { self }
+    case everyDay = "Every Day"
+    case everyOtherDay = "Every Other Day"
+    case onceAWeekMonday = "Once a Week on Monday"
+    case onceAWeekTuesday = "Once a Week on Tuesday"
+    case onceAWeekWednesday = "Once a Week on Wednesday"
+    case onceAWeekThursday = "Once a Week on Thursday"
+    case onceAWeekFriday = "Once a Week on Friday"
+    case onceAWeekSaturday = "Once a Week on Saturday"
+    case onceAWeekSunday = "Once a Week on Sunday"
+}
+
+enum HealthKitPossibilities: String, CaseIterable, Identifiable {
+    var id: Self { self }
+    case heightTracker = "Height Tracker"
+    case weightTracker = "Weight Tracker"
+}
+
+enum CarePlanID: String, CaseIterable, Identifiable {
+    var id: Self { self }
+    case health // Add custom id's for your Care Plans, these are examples
+    case checkIn
+    case weighIn
+    case user
+}
+
 enum TaskID {
-    static let doxylamine = "doxylamine"
-    static let nausea = "nausea"
-    static let stretch = "stretch"
-    static let kegels = "kegels"
-    static let steps = "steps"
+    static let bodyMass = "body mass"
+    static let height = "height"
+    static let repetition = "repetition"
+    static let chatgtp = "chatGTP"
+    static let warmUp = "warm up"
+    static let benchPress = "bench press"
+    static let core = "core"
+    static let completedExercise = "completed exercise"
+    static let weighInSurvey = "weigh in survey"
+    static let postWorkoutSurvey = "post workout survey"
 
     static var ordered: [String] {
-        [Self.steps, Self.doxylamine, Self.kegels, Self.stretch, Self.nausea]
+        // swiftlint:disable:next line_length
+        [Self.weighInSurvey, Self.postWorkoutSurvey, Self.bodyMass, Self.height, Self.repetition, Self.core, Self.benchPress, Self.warmUp, Self.completedExercise]
     }
 }
 
