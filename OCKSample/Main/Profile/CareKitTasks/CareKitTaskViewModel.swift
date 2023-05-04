@@ -15,7 +15,7 @@ class CareKitTaskViewModel: ObservableObject {
     @Published var instructions = ""
     @Published var selectedCard: CareKitCard = .button
     @Published var selectedSchedule: SchedulePossibilities = .everyDay
-    @Published var selectedHealthKitTask: HealthKitPossibilities = .heartRateTracker
+    @Published var selectedHealthKitTask: HealthKitPossibilities = .heightTracker
 
     @Published var error: AppError? {
         willSet {
@@ -95,45 +95,17 @@ class CareKitTaskViewModel: ObservableObject {
                                             end: nil,
                                             targetValues: [],
                                             text: nil)
-        default:
-            return OCKSchedule.dailyAtTime(hour: 0,
-                                           minutes: 0,
-                                           start: Date(),
-                                           end: nil,
-                                           text: nil)
         }
     }
 
     private func setHealthKitLinkage(userHealthKitTask: HealthKitPossibilities) -> OCKHealthKitLinkage {
         switch userHealthKitTask {
-        case .heartRateTracker:
-            return OCKHealthKitLinkage.init(quantityIdentifier: .heartRate, quantityType: .discrete, unit: .count())
-        case .stepTracker:
-            return OCKHealthKitLinkage.init(quantityIdentifier: .stepCount, quantityType: .cumulative, unit: .count())
+        case .heightTracker:
+            return OCKHealthKitLinkage.init(quantityIdentifier: .height, quantityType: .discrete, unit: .inch())
         case .weightTracker:
             return OCKHealthKitLinkage.init(quantityIdentifier: .bodyMass, quantityType: .discrete, unit: .pound())
         }
     }
-
-    /*
-     Here I tried to get a person's care plan and return it to both addTask functions
-     Got close but was having issues with accessing the store
-    func getCarePlanUUID() async -> UUID? {
-        
-        guard (try? await User.current()) != nil,
-              let personUUID = try? await Utility.getRemoteClockUUID() else {
-            Logger.myContact.error("User not logged in")
-            return nil
-        }
-        
-        var query = OCKCarePlanQuery(for: Date())
-        query.patientUUIDs = [personUUID]
-        
-        let userCarePlan = try await storeManager.store.fetchCarePlans(query)
-        
-        return userCarePlan.uuids
-    }
-    */
 
     // MARK: Intents
     func addTask() async {

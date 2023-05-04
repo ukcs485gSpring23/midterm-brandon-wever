@@ -31,7 +31,32 @@ final class SurveyViewSynchronizer: OCKSurveyTaskViewSynchronizer {
              */
 
             if let unwrappedTask = event.task as? OCKTask {
-                if unwrappedTask.survey == .checkIn {
+                switch unwrappedTask.survey {
+                case .checkIn:
+                    let pain = event.answer(kind: CheckIn.painItemIdentifier)
+                    let sleep = event.answer(kind: CheckIn.sleepItemIdentifier)
+
+                    view.instructionsLabel.text = """
+                        Pain: \(Int(pain))
+                        Sleep: \(Int(sleep)) hours
+                        """
+                case .weighIn:
+                    let weight = event.answer(kind: WeighIn.weightItemIdentifier)
+                    let calories = event.answer(kind: WeighIn.caloriesItemIdentifier)
+
+                    view.instructionsLabel.text = """
+                    Weight: \((Double(weight)*2.20462).rounded(.up)) pounds
+                    Calories: \(Int(calories)) calories today
+                    """
+                case .postWorkoutRating:
+                    let difficulty = event.answer(kind: PostWorkoutRating.difficultyItemIdentifier)
+                    let effort = event.answer(kind: PostWorkoutRating.effortItemIdentifier)
+
+                    view.instructionsLabel.text = """
+                        Difficulty: \(Int(difficulty)) /10
+                        Effort: \(Int(effort)) / 10
+                        """
+                default:
                     let pain = event.answer(kind: CheckIn.painItemIdentifier)
                     let sleep = event.answer(kind: CheckIn.sleepItemIdentifier)
 

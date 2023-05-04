@@ -28,17 +28,29 @@ struct MainTabView: View {
                 }
                 .tag(0)
 
-            ContactView()
+            InsightsView()
                 .tabItem {
                     if selectedTab == 1 {
-                        Image("phone.bubble.left.fill")
+                        Image(systemName: "chart.pie.fill")
                             .renderingMode(.template)
                     } else {
-                        Image("phone.bubble.left")
+                        Image(systemName: "chart.pie")
                             .renderingMode(.template)
                     }
                 }
                 .tag(1)
+
+            ContactView()
+                .tabItem {
+                    if selectedTab == 2 {
+                        Image(systemName: "phone.bubble.left.fill")
+                            .renderingMode(.template)
+                    } else {
+                        Image(systemName: "phone.bubble.left")
+                            .renderingMode(.template)
+                    }
+                }
+                .tag(2)
 
             ProfileView(loginViewModel: loginViewModel)
                 .tabItem {
@@ -50,7 +62,7 @@ struct MainTabView: View {
                             .renderingMode(.template)
                     }
                 }
-                .tag(2)
+                .tag(3)
 
         }
         .navigationBarHidden(true)

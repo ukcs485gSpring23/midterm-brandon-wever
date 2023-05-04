@@ -60,7 +60,7 @@ extension OCKHealthKitPassthroughStore {
      TODOx: You need to tie an OCKPatient.
     */
     func populateSampleData(_ patientUUID: UUID? = nil) async throws {
-        let carePlanUUID = try await populateCarePlans(patientUUID: patientUUID)
+        _ = try await populateCarePlans(patientUUID: patientUUID)
 
         let schedule = OCKSchedule.dailyAtTime(
             hour: 8, minutes: 0, start: Date(), end: nil, text: nil,
@@ -78,18 +78,27 @@ extension OCKHealthKitPassthroughStore {
         // The getCarePlanUUID's method is a type method because it can be called alone and does not need an instance of the OCKStore to be created in order to be used.
 
         let carePlanUUIDs = try await OCKStore.getCarePlanUUIDs()
-        var steps = OCKHealthKitTask(
-            id: TaskID.steps,
-            title: "Steps",
-            carePlanUUID: carePlanUUIDs.first?.value,
-            schedule: schedule,
-            healthKitLinkage: OCKHealthKitLinkage(
-                quantityIdentifier: .stepCount,
-                quantityType: .cumulative,
-                unit: .count()))
-        steps.asset = "figure.walk"
-        steps.card = .numericProgress
-        // uncomment to get sample steps card back
-        try await addTasksIfNotPresent([steps])
+
+        var bodyMass = OCKHealthKitTask(id: TaskID.bodyMass,
+                                   title: "Body Mass",
+                                   carePlanUUID: carePlanUUIDs.first?.value,
+                                   schedule: schedule,
+                                   healthKitLinkage: OCKHealthKitLinkage(
+                                        quantityIdentifier: .bodyMass,
+                                        quantityType: .discrete,
+                                        unit: .pound()))
+        bodyMass.card = .labeledValue
+
+        var height = OCKHealthKitTask(id: TaskID.height,
+                                      title: "Height",
+                                      carePlanUUID: carePlanUUIDs.first?.value,
+                                      schedule: schedule,
+                                      healthKitLinkage: OCKHealthKitLinkage(
+                                        quantityIdentifier: .height,
+                                        quantityType: .discrete,
+                                        unit: .inch()))
+        height.card = .labeledValue
+
+        try await addTasksIfNotPresent([bodyMass, height])
     }
 }
